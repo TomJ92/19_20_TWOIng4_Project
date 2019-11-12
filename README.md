@@ -21,3 +21,12 @@ Les instructions sont à retrouver dans le pdf mis à disposition sur campus.
 **Le non respect de ces instructions entraînera des pertes de points alors prenez le temps de tout lire et de poser des questions si vous ne comprenez pas**
 
 Pour rappel, la probabilité de recevoir une réponse à un mail envoyé quelques heures avant le rendu est très proche de 0.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Membres projet : -Tom Jouvet
+- Thomas Lemercier
+
+Groupe : OCRES 4
+
+Lien Trello : https://trello.com/c/NYHzvEph/10-templates
