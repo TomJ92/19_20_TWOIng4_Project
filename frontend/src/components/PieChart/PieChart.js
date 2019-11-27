@@ -1,6 +1,6 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
-import { MDBListGroup, MDBListGroupItem, MDBContainer, MDBBadge } from "mdbreact";
+import { MDBListGroup, MDBListGroupItem, MDBBadge } from "mdbreact";
 
 class PieChart extends React.Component {
   constructor(props){
@@ -11,13 +11,12 @@ class PieChart extends React.Component {
         datasets: [
           {
             data: [300, 50, 100, 40],
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#388e3c"],
             hoverBackgroundColor: [
               "#FF5A5E",
               "#5AD3D1",
               "#FFC870",
-              "#A8B3C5",
-              "#616774"
+              "#388e3c ",
             ]
           }
         ]
@@ -25,31 +24,60 @@ class PieChart extends React.Component {
     };
   }
 
-render() {
+  render() {
     return (
-    <div className="d-flex flex-row">
-      <div style={{ width: "22rem" }}>
-        <Doughnut data={this.state.dataDoughnut} options={{ responsive: true }} />
-      </div>
-
       <div>
-        <MDBContainer>
-          <MDBListGroup style={{ width: "22rem" }}>
-            <MDBListGroupItem className="d-flex justify-content-between align-items-center">Cras justo odio<MDBBadge color="primary"
-                                                                                                           pill>14</MDBBadge>
-            </MDBListGroupItem>
-            <MDBListGroupItem className="d-flex justify-content-between align-items-center">Dapibus ac facilisis in<MDBBadge
-                                                                                                                   color="primary" pill>2</MDBBadge>
-            </MDBListGroupItem>
-            <MDBListGroupItem className="d-flex justify-content-between align-items-center">Morbi leo risus<MDBBadge color="primary"
-                                                                                                           pill>1</MDBBadge>
-            </MDBListGroupItem>
-          </MDBListGroup>
-        </MDBContainer>
+        <h4>Ventes effectuées</h4>
+        <div className="d-flex flex-row">
+          <div className="d-flex align-items-center">
+            <Doughnut data={this.state.dataDoughnut} options={{ responsive: true }} />
+          </div>
+
+          <div>
+            <MDBListGroup className="list-group-flush">
+
+              <MDBListGroupItem>
+                <text className="pr-2">
+                  Ordinateurs
+                </text>
+                <MDBBadge color="danger-color" pill className="float-right">
+                  300
+                </MDBBadge>
+              </MDBListGroupItem>
+
+              <MDBListGroupItem>
+                <text className="pr-2">
+                  Tablettes
+                </text>
+                <MDBBadge color="info-color" pill className="float-right">
+                  50
+                </MDBBadge>
+              </MDBListGroupItem>
+
+              <MDBListGroupItem>
+                <text className="pr-2">
+                  Logiciels
+                </text>
+                <MDBBadge color="amber darken-1" pill className="float-right">
+                  100
+                </MDBBadge>
+              </MDBListGroupItem>
+
+              <MDBListGroupItem>
+                <text className="pr-2">
+                  Smartphones
+                </text>
+                  <MDBBadge color="green darken-2" pill className="float-right">
+                  40
+                </MDBBadge>
+              </MDBListGroupItem>
+
+            </MDBListGroup>
+          </div>
+        </div>
       </div>
-    </div>
-    );
-  }
+);
+}
 }
 
 export default PieChart;
