@@ -13,7 +13,6 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <NavBar></NavBar>
         <Widgets></Widgets>
       </div>
       );

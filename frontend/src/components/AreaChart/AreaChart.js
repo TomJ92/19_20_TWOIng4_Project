@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
+  AreaChart, Area, Legend, XAxis, YAxis, CartesianGrid, Tooltip,
 } from 'recharts';
 
 const data = [
@@ -29,9 +29,10 @@ export default class Example extends PureComponent {
 
   render() {
     return (
-      <div>
+      <div className="BarChartWidget">
+        <h3 className="graph-title"> Gains mensuels </h3>
       <AreaChart width={730} height={250} data={data}
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+        margin={{ top: 10, right: 30, left: 0, bottom: 0 }} label="Bonjour">
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="#A7A7FF" stopOpacity={0.8}/>
@@ -43,9 +44,10 @@ export default class Example extends PureComponent {
     </linearGradient>
   </defs>
   <XAxis dataKey="name" />
-  <YAxis/>
+  <YAxis type="number" domain={[0, 25000]} ticks={[5000, 10000,15000 , 20000,25000]} />
   <CartesianGrid strokeDasharray="3 3" />
   <Tooltip />
+  <Legend verticalAlign="bottom" align ="left" iconType ="rect" margin="{ top: 0, left: 10, right: 0, bottom: 0 }" height={36}/>
   <Area type="monotone" dataKey="Multimédia" stroke="#A7A7FF" fillOpacity={1} fill="url(#colorUv)" />
   <Area type="monotone" dataKey="Informatique" stroke="#54D8FF" fillOpacity={1} fill="url(#colorPv)" />
 </AreaChart>
