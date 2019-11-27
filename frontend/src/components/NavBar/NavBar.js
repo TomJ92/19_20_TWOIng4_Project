@@ -28,13 +28,11 @@ render() {
           <MDBNavbarNav className="d-flex flex-column">
 
             <MDBNavItem className="d-flex flex-row">
-              <MDBIcon icon="home" />
-              <MDBNavLink to="#!">Accueil</MDBNavLink>
+              <MDBNavLink to="#!"><MDBIcon icon="home"/> Accueil</MDBNavLink>
             </MDBNavItem>
 
             <MDBNavItem className="d-flex flex-row">
-              <MDBIcon icon="cog" />
-              <MDBNavLink to="#!">Administratif</MDBNavLink>
+              <MDBNavLink to="#!"><MDBIcon icon="cog"/> Administratif</MDBNavLink>
             </MDBNavItem>
 
             <MDBNavItem className="pt-4">
