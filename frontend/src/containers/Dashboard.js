@@ -1,6 +1,8 @@
 import React from 'react';
 import Widgets from './Widgets';
 import NavBar from '../components/NavBar/NavBar.js';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -13,8 +15,15 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <NavBar></NavBar>
-        <Widgets></Widgets>
+        <Row>
+          <Col xs='2' style={{ height: '100vh' }}>
+            <NavBar></NavBar>
+          </Col>
+
+          <Col xs='10'>
+            <Widgets></Widgets>
+          </Col>
+        </Row>
       </div>
       );
   }

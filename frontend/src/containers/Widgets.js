@@ -1,7 +1,6 @@
 import React from 'react';
 import PieChart from '../components/PieChart/PieChart.js';
 import Card from 'react-bootstrap/Card';
-//import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AreaChart from '../components/AreaChart/AreaChart.js';
@@ -17,27 +16,18 @@ export default class Widgets extends React.Component {
   render() {
     return (
         <Row>
-          <Col xs="10" md="auto">
-            <Card className="">
-              <Card.Header as="h5">Ventes effectuées</Card.Header>
+          <Col xs="10" md="auto" className="mt-2 ml-2">
+            <Card className="text-center shadow-box hoverable">
               <Card.Body>
-                <Card.Title>PieChart</Card.Title>
-                <Card.Text>
-
-                </Card.Text>
-                <PieChart></PieChart>
+                <PieChart/>
               </Card.Body>
             </Card>
           </Col>
-          <Col xs="10" md="auto">
-            <Card className="">
-              <Card.Header as="h5">Featured</Card.Header>
-              <Card.Body>
-                <Card.Title>AreaChart</Card.Title>
-                <Card.Text>
 
-                </Card.Text>
-                <AreaChart></AreaChart>
+          <Col xs="10" md="auto" className="mt-2 ml-2">
+            <Card className="text-center shadow-box hoverable">
+              <Card.Body>
+                <AreaChart/>
               </Card.Body>
             </Card>
           </Col>
