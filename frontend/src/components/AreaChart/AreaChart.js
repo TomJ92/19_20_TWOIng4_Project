@@ -29,6 +29,7 @@ export default class Example extends PureComponent {
 
   render() {
     return (
+      <div>
       <AreaChart width={730} height={250} data={data}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
         <defs>
@@ -48,6 +49,10 @@ export default class Example extends PureComponent {
   <Area type="monotone" dataKey="Multimédia" stroke="#A7A7FF" fillOpacity={1} fill="url(#colorUv)" />
   <Area type="monotone" dataKey="Informatique" stroke="#54D8FF" fillOpacity={1} fill="url(#colorPv)" />
 </AreaChart>
+<div> <rect fill="rgba(163,161,251,1)" id="Label_A0_Rectangle_50" rx="4" ry="4" x="0" y="0" width="18" height="8">
+        </rect>
+        </div>
+        </div>
     );
   }
 }
