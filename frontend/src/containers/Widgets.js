@@ -17,7 +17,7 @@ export default class Widgets extends React.Component {
     return (
         <Row>
           <Col xs="10" md="auto" className="mt-2 ml-2">
-            <Card className="text-center">
+            <Card className="text-center shadow-box hoverable">
               <Card.Body>
                 <PieChart/>
               </Card.Body>
@@ -25,7 +25,7 @@ export default class Widgets extends React.Component {
           </Col>
 
           <Col xs="10" md="auto" className="mt-2 ml-2">
-            <Card className="text-center">
+            <Card className="text-center shadow-box hoverable">
               <Card.Body>
                 <AreaChart/>
               </Card.Body>

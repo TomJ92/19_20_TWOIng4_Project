@@ -14,13 +14,13 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="danger-color ">
+      <div>
         <Row>
-          <Col>
+          <Col xs='2' style={{ height: '100vh' }}>
             <NavBar></NavBar>
           </Col>
 
-          <Col>
+          <Col xs='10'>
             <Widgets></Widgets>
           </Col>
         </Row>
