@@ -32,12 +32,9 @@ export default class Widgets extends React.Component {
               </Card.Body>
             </Card>
           </Col>
-          <Col xs="10" md="auto">
-            <Card className="">
+          <Col xs="10" md="auto" className="mt-2 ml-2">
+            <Card className="text-center shadow-box hoverable">
               <Card.Body>
-                <Card.Text>
-
-                </Card.Text>
                 <RadialChart></RadialChart>
               </Card.Body>
             </Card>
