@@ -1,5 +1,6 @@
 import React from 'react';
 import Widgets from './Widgets';
+import NavBar from '../components/NavBar/NavBar.js';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -11,7 +12,10 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <Widgets></Widgets>
+      <div>
+        <NavBar></NavBar>
+        <Widgets></Widgets>
+      </div>
       );
   }
 }
