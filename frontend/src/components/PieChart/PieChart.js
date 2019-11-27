@@ -1,52 +1,55 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, Tooltip } from 'recharts';
+import React from "react";
+import { Doughnut } from "react-chartjs-2";
+import { MDBListGroup, MDBListGroupItem, MDBContainer, MDBBadge } from "mdbreact";
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({
-  cx, cy, midAngle, innerRadius, outerRadius, percent, index,
-}) => {
-   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-
-export default class Example extends PureComponent {
-  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/c9pL8k61/';
-
-  render() {
-    return (
-      <PieChart width={400} height={400}>
-        <Pie
-          data={data}
-          cx={200}
-          cy={200}
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
-        >
+class PieChart extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      dataDoughnut: {
+        labels: ["Ordinateurs", "Tablettes", "Logiciels", "Smartphones"],
+        datasets: [
           {
-            data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+            data: [300, 50, 100, 40],
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            hoverBackgroundColor: [
+              "#FF5A5E",
+              "#5AD3D1",
+              "#FFC870",
+              "#A8B3C5",
+              "#616774"
+            ]
           }
-        </Pie>
-        <Tooltip />
-      </PieChart>
+        ]
+      }
+    };
+  }
+
+render() {
+    return (
+    <div className="d-flex flex-row">
+      <div style={{ width: "22rem" }}>
+        <Doughnut data={this.state.dataDoughnut} options={{ responsive: true }} />
+      </div>
+
+      <div>
+        <MDBContainer>
+          <MDBListGroup style={{ width: "22rem" }}>
+            <MDBListGroupItem className="d-flex justify-content-between align-items-center">Cras justo odio<MDBBadge color="primary"
+                                                                                                           pill>14</MDBBadge>
+            </MDBListGroupItem>
+            <MDBListGroupItem className="d-flex justify-content-between align-items-center">Dapibus ac facilisis in<MDBBadge
+                                                                                                                   color="primary" pill>2</MDBBadge>
+            </MDBListGroupItem>
+            <MDBListGroupItem className="d-flex justify-content-between align-items-center">Morbi leo risus<MDBBadge color="primary"
+                                                                                                           pill>1</MDBBadge>
+            </MDBListGroupItem>
+          </MDBListGroup>
+        </MDBContainer>
+      </div>
+    </div>
     );
   }
 }
+
+export default PieChart;
