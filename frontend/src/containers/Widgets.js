@@ -17,25 +17,18 @@ export default class Widgets extends React.Component {
   render() {
     return (
         <Row>
-          <Col xs="10" md="auto">
-            <Card className="">
-              <Card.Header as="h5">Ventes effectuées</Card.Header>
+          <Col xs="10" md="auto" className="mt-2 ml-2">
+            <Card className="text-center shadow-box hoverable">
               <Card.Body>
-                <Card.Title>PieChart</Card.Title>
-                <Card.Text>
-
-                </Card.Text>
-                <PieChart></PieChart>
+                <PieChart/>
               </Card.Body>
             </Card>
           </Col>
-          <Col xs="10" md="auto">
-            <Card className="">
-              <Card.Body>
-                <Card.Text>
 
-                </Card.Text>
-                <AreaChart></AreaChart>
+          <Col xs="10" md="auto" className="mt-2 ml-2">
+            <Card className="text-center shadow-box hoverable">
+              <Card.Body>
+                <AreaChart/>
               </Card.Body>
             </Card>
           </Col>
