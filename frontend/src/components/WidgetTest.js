@@ -1,52 +1,81 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, Tooltip } from 'recharts';
+import React from "react";
+import { Doughnut } from "react-chartjs-2";
+import { MDBListGroup, MDBListGroupItem, MDBBadge } from "mdbreact";
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({
-  cx, cy, midAngle, innerRadius, outerRadius, percent, index,
-}) => {
-   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-
-export default class Example extends PureComponent {
-  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/c9pL8k61/';
+export default class PieChart extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      dataDoughnut: {
+        labels: ["Ordinateurs", "Tablettes", "Logiciels", "Smartphones"],
+        datasets: [
+          {
+            data: [300, 50, 100, 40],
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#388e3c"],
+            hoverBackgroundColor: [
+              "#FF5A5E",
+              "#5AD3D1",
+              "#FFC870",
+              "#388e3c ",
+            ]
+          }
+        ]
+      }
+    };
+  }
 
   render() {
     return (
-      <PieChart width={400} height={400}>
-        <Pie
-          data={data}
-          cx={200}
-          cy={200}
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
-        >
-          {
-            data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-          }
-        </Pie>
-        <Tooltip />
-      </PieChart>
-    );
-  }
+      <div>
+        <h4>Ventes effectuées</h4>
+        <div className="d-flex flex-row">
+          <div className="d-flex align-items-center">
+            <Doughnut data={this.state.dataDoughnut} options={{ responsive: true }} />
+          </div>
+
+          <div>
+            <MDBListGroup className="list-group-flush">
+
+              <MDBListGroupItem>
+                <text className="pr-2">
+                  Ordinateurs
+                </text>
+                <MDBBadge color="danger-color" pill className="float-right">
+                  300
+                </MDBBadge>
+              </MDBListGroupItem>
+
+              <MDBListGroupItem>
+                <text className="pr-2">
+                  Tablettes
+                </text>
+                <MDBBadge color="info-color" pill className="float-right">
+                  50
+                </MDBBadge>
+              </MDBListGroupItem>
+
+              <MDBListGroupItem>
+                <text className="pr-2">
+                  Logiciels
+                </text>
+                <MDBBadge color="amber darken-1" pill className="float-right">
+                  100
+                </MDBBadge>
+              </MDBListGroupItem>
+
+              <MDBListGroupItem>
+                <text className="pr-2">
+                  Smartphones
+                </text>
+                  <MDBBadge color="green darken-2" pill className="float-right">
+                  40
+                </MDBBadge>
+              </MDBListGroupItem>
+
+            </MDBListGroup>
+          </div>
+        </div>
+      </div>
+);
+}
 }

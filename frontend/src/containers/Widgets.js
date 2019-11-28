@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import AreaChart from '../components/AreaChart/AreaChart.js';
 import RadialChart from '../components/RadialChart/RadialChart.js';
 import RadChart from '../components/RadarChart/RadarChart.js';
+import BarChart from '../components/BarChart/BarChart.js';
 
 export default class Widgets extends React.Component {
   constructor(props) {
@@ -50,6 +51,14 @@ export default class Widgets extends React.Component {
             <Card className="text-center shadow-box hoverable">
               <Card.Body>
                 <RadChart/>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          <Col xs="10" md="auto" className="mt-1">
+            <Card className="text-center shadow-box hoverable">
+              <Card.Body>
+                <BarChart/>
               </Card.Body>
             </Card>
           </Col>
