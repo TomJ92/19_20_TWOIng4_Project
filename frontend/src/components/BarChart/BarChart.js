@@ -55,7 +55,10 @@ export default class BarChart extends Component {
   render(){
     return (
       <div>
-        <Bar data={this.state.dataBar} height={200} width={400} options={this.state.barChartOptions} />
+        <h6>Ventes Globales</h6>
+        <div>
+          <Bar data={this.state.dataBar} height={200} width={400} options={this.state.barChartOptions}/>
+        </div>
       </div>
     );
   }
