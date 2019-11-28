@@ -1,12 +1,13 @@
 import React from 'react';
 import PieChart from '../components/PieChart/PieChart.js';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import AreaChart from '../components/AreaChart/AreaChart.js';
 import RadialChart from '../components/RadialChart/RadialChart.js';
 import RadChart from '../components/RadarChart/RadarChart.js';
 import BarChart from '../components/BarChart/BarChart.js';
+import TabWidget from '../components/TabWidget/TabWidget.js';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default class Widgets extends React.Component {
   constructor(props) {
@@ -35,7 +36,6 @@ export default class Widgets extends React.Component {
               </Card.Body>
             </Card>
           </Col>
-
         </Row>
 
         <Row>
@@ -54,11 +54,21 @@ export default class Widgets extends React.Component {
               </Card.Body>
             </Card>
           </Col>
+        </Row>
 
+        <Row>
           <Col xs="10" md="auto" className="mt-1">
             <Card className="text-center shadow-box hoverable">
               <Card.Body>
                 <BarChart/>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          <Col xs="10" md="auto" className="mt-1">
+            <Card className="text-center shadow-box hoverable">
+              <Card.Body>
+                <TabWidget/>
               </Card.Body>
             </Card>
           </Col>
