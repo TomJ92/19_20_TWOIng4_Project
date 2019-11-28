@@ -15,7 +15,7 @@ toggleCollapse = () => {
 render() {
   return (
     <Router>
-      <MDBNavbar color="purple darken-3" dark expand="md" className="d-flex flex-column h-100 align-items-start">
+      <MDBNavbar color="purple darken-3" dark expand="md" className="d-flex flex-column h-100">
 
         <MDBNavbarBrand>
           <strong className="white-text">DashBoard</strong>
@@ -27,11 +27,11 @@ render() {
 
           <MDBNavbarNav className="d-flex flex-column">
 
-            <MDBNavItem className="d-flex flex-row">
+            <MDBNavItem>
               <MDBNavLink to="#!"><MDBIcon icon="home"/> Accueil</MDBNavLink>
             </MDBNavItem>
 
-            <MDBNavItem className="d-flex flex-row">
+            <MDBNavItem>
               <MDBNavLink to="#!"><MDBIcon icon="cog"/> Administratif</MDBNavLink>
             </MDBNavItem>
 
