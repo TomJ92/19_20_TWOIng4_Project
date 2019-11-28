@@ -1,8 +1,9 @@
 import React from 'react';
-import Widgets from './Widgets';
-import NavBar from '../components/NavBar/NavBar.js';
+import Widgets from '../Widgets';
+import NavBar from '../../components/NavBar/NavBar.js';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './DashBoard.css'
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -14,9 +15,9 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="flexible-content">
         <Row>
-          <Col xs='2' style={{ height: '100vh' }}>
+          <Col xs='2'>
             <NavBar></NavBar>
           </Col>
 

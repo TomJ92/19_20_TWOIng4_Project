@@ -1,57 +1,51 @@
-import React, { Component } from "react";
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
+import React from 'react';
+import logo from '../../img/logo.png';
+import { MDBListGroup, MDBListGroupItem, MDBIcon } from 'mdbreact';
+import { NavLink } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-class NavBar extends Component {
-state = {
-  isOpen: false
-};
+class NavBar extends React.Component {
+  render(){
+    return (
+      <Router>
+        <div className="sidebar-fixed position-fixed deep-purple lighten-4">
 
-toggleCollapse = () => {
-  this.setState({ isOpen: !this.state.isOpen });
-}
+          <img style={{opacity: 1.0}} alt="MDB React Logo" className="img-fluid mt-5" src={logo}/>
 
-render() {
-  return (
-    <Router>
-      <MDBNavbar color="purple darken-3" dark expand="md" className="d-flex flex-column h-100">
-
-        <MDBNavbarBrand>
-          <strong className="white-text">DashBoard</strong>
-        </MDBNavbarBrand>
-
-        <MDBNavbarToggler onClick={this.toggleCollapse} />
-
-        <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar className="d-flex flex-column pt-4">
-
-          <MDBNavbarNav className="d-flex flex-column">
-
-            <MDBNavItem>
-              <MDBNavLink to="#!"><MDBIcon icon="home"/> Accueil</MDBNavLink>
-            </MDBNavItem>
-
-            <MDBNavItem>
-              <MDBNavLink to="#!"><MDBIcon icon="cog"/> Administratif</MDBNavLink>
-            </MDBNavItem>
-
-            <MDBNavItem className="pt-4">
-              <MDBDropdown>
-                <MDBDropdownToggle nav caret>
-                  <div className="d-none d-md-inline">Liens utiles</div>
-                </MDBDropdownToggle>
-                <MDBDropdownMenu className="dropdown-default">
-                  <MDBDropdownItem href="https://trello.com/b/tYwAd3dE/react-project">Trello</MDBDropdownItem>
-                  <MDBDropdownItem href="https://github.com/TomJ92/19_20_TWOIng4_Project/tree/master/frontend">GitHub Tom</MDBDropdownItem>
-                  <MDBDropdownItem href="https://github.com/Thomas7156?tab=repositories">GitHub Thomas</MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBNavItem>
-
-          </MDBNavbarNav>
-        </MDBCollapse>
-      </MDBNavbar>
-    </Router>
+          <MDBListGroup className="list-group-flush mt-5">
+            <NavLink className="text-dark" exact={true} to="/" activeClassName="activeClass">
+              <MDBListGroupItem style={{backgroundColor: 'transparent'}}>
+                <MDBIcon icon="chart-pie" className="mr-3"/>
+                Dashboard
+              </MDBListGroupItem>
+            </NavLink>
+            <NavLink className="text-dark" to="/profile" activeClassName="activeClass">
+              <MDBListGroupItem style={{backgroundColor: 'transparent'}}>
+                <MDBIcon icon="user" className="mr-3"/>
+                Profile
+              </MDBListGroupItem>
+            </NavLink>
+            <NavLink className="text-dark" to="/tables" activeClassName="activeClass">
+              <MDBListGroupItem style={{backgroundColor: 'transparent'}}>
+                <MDBIcon icon="table" className="mr-3"/>
+                Tables
+              </MDBListGroupItem>
+            </NavLink>
+            <NavLink className="text-dark" to="/maps" activeClassName="activeClass">
+              <MDBListGroupItem style={{backgroundColor: 'transparent'}}>
+                <MDBIcon icon="map" className="mr-3"/>
+                Maps
+              </MDBListGroupItem>
+            </NavLink>
+            <NavLink className="text-dark" to="/404" activeClassName="activeClass">
+              <MDBListGroupItem style={{backgroundColor: 'transparent'}}>
+                <MDBIcon icon="exclamation" className="mr-3"/>
+                404
+              </MDBListGroupItem>
+            </NavLink>
+          </MDBListGroup>
+        </div>
+      </Router>
     );
   }
 }
