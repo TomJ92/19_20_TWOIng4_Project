@@ -32,7 +32,7 @@ export default class areaChart extends PureComponent {
       <div className="BarChartWidget">
         <h4 className="graph-title"> Gains mensuels </h4>
         <AreaChart width={650} height={223} data={data}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }} label="Bonjour">
+          margin={{ top: 0, right: 0, left: 0, bottom: 0 }} label="Bonjour">
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#A7A7FF" stopOpacity={0.8}/>
@@ -44,7 +44,7 @@ export default class areaChart extends PureComponent {
             </linearGradient>
           </defs>
           <XAxis dataKey="name" />
-          <YAxis type="number" domain={[0, 20000]} ticks={[5000, 10000,15000 , 20000]} />
+          <YAxis type="number" domain={[0, 20000]} ticks={[5000, 10000,15000, 20000]} />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
           <Legend verticalAlign="bottom" align ="left" iconType ="rect" margin="{ top: 0, left: 10, right: 0, bottom: 0 }" height={36}/>
