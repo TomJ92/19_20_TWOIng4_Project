@@ -2,7 +2,7 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { MDBListGroup, MDBListGroupItem, MDBBadge } from "mdbreact";
 
-class PieChart extends React.Component {
+export default class PieChart extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -79,5 +79,3 @@ class PieChart extends React.Component {
 );
 }
 }
-
-export default PieChart;
