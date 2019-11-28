@@ -1,17 +1,9 @@
 import React, { PureComponent } from 'react';
-import { RadialBarChart, RadialBar, Legend, Tooltip, PolarAngleAxis, Label} from 'recharts';
+import { RadialBarChart, RadialBar, PolarAngleAxis} from 'recharts';
 
 const data = [
   { name: 'L1', value: 35 }
 ];
-
-const circleSize = 90;
-
-const style = {
-  top: 0,
-  left: 350,
-  lineHeight: '24px',
-};
 
 export default class RadialChart extends PureComponent {
   render() {

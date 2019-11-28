@@ -28,9 +28,9 @@ export default class RadChart extends PureComponent {
   render() {
     return (
       <div>
-        <h4>Ventes multimédia</h4>
-        <RadarChart cx={300} cy={250} outerRadius={150} width={750} height={750} data={data}>
-          <PolarGrid />
+        <h5>Ventes multimédia</h5>
+        <RadarChart cx='50%' cy='50%' outerRadius={150} width={300} height={300} data={data}>
+          <PolarGrid/>
           <PolarAngleAxis dataKey="subject" />
           <PolarRadiusAxis angle={30} domain={[0, 150]} />
           <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
