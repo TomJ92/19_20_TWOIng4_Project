@@ -1,81 +1,48 @@
-import React from "react";
-import { Doughnut } from "react-chartjs-2";
-import { MDBListGroup, MDBListGroupItem, MDBBadge } from "mdbreact";
+import React from 'react';
+import { MDBListGroup, MDBListGroupItem, MDBIcon } from 'mdbreact';
+import { NavLink } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-export default class PieChart extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      dataDoughnut: {
-        labels: ["Ordinateurs", "Tablettes", "Logiciels", "Smartphones"],
-        datasets: [
-          {
-            data: [300, 50, 100, 40],
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#388e3c"],
-            hoverBackgroundColor: [
-              "#FF5A5E",
-              "#5AD3D1",
-              "#FFC870",
-              "#388e3c ",
-            ]
-          }
-        ]
-      }
-    };
-  }
-
-  render() {
+const TopNavigation = () => {
     return (
-      <div>
-        <h4>Ventes effectuées</h4>
-        <div className="d-flex flex-row">
-          <div className="d-flex align-items-center">
-            <Doughnut data={this.state.dataDoughnut} options={{ responsive: true }} />
-          </div>
-
-          <div>
-            <MDBListGroup className="list-group-flush">
-
+        <div className="sidebar-fixed position-fixed">
+          <a href="#!" className="logo-wrapper waves-effect">
+            <img alt="MDB React Logo" className="img-fluid"/>
+          </a>
+          <MDBListGroup className="list-group-flush">
+            <NavLink exact={true} to="/" activeClassName="activeClass">
               <MDBListGroupItem>
-                <text className="pr-2">
-                  Ordinateurs
-                </text>
-                <MDBBadge color="danger-color" pill className="float-right">
-                  300
-                </MDBBadge>
+                <MDBIcon icon="chart-pie" className="mr-3"/>
+                Dashboard
               </MDBListGroupItem>
-
-              <MDBListGroupItem>
-                <text className="pr-2">
-                  Tablettes
-                </text>
-                <MDBBadge color="info-color" pill className="float-right">
-                  50
-                </MDBBadge>
-              </MDBListGroupItem>
-
-              <MDBListGroupItem>
-                <text className="pr-2">
-                  Logiciels
-                </text>
-                <MDBBadge color="amber darken-1" pill className="float-right">
-                  100
-                </MDBBadge>
-              </MDBListGroupItem>
-
-              <MDBListGroupItem>
-                <text className="pr-2">
-                  Smartphones
-                </text>
-                  <MDBBadge color="green darken-2" pill className="float-right">
-                  40
-                </MDBBadge>
-              </MDBListGroupItem>
-
+                </NavLink>
+                <NavLink to="/profile" activeClassName="activeClass">
+                    <MDBListGroupItem>
+                        <MDBIcon icon="user" className="mr-3"/>
+                        Profile
+                    </MDBListGroupItem>
+                </NavLink>
+                <NavLink to="/tables" activeClassName="activeClass">
+                    <MDBListGroupItem>
+                        <MDBIcon icon="table" className="mr-3"/>
+                        Tables
+                    </MDBListGroupItem>
+                </NavLink>
+                <NavLink to="/maps" activeClassName="activeClass">
+                    <MDBListGroupItem>
+                        <MDBIcon icon="map" className="mr-3"/>
+                        Maps
+                    </MDBListGroupItem>
+                </NavLink>
+                <NavLink to="/404" activeClassName="activeClass">
+                    <MDBListGroupItem>
+                        <MDBIcon icon="exclamation" className="mr-3"/>
+                        404
+                    </MDBListGroupItem>
+                </NavLink>
             </MDBListGroup>
-          </div>
         </div>
-      </div>
-);
+    );
 }
-}
+
+export default TopNavigation;
