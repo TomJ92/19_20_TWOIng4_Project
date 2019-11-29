@@ -13,15 +13,15 @@ class NavBar extends React.Component {
           <img style={{opacity: 1.0}} alt="MDB React Logo" className="img-fluid mt-5" src={logo}/>
 
           <MDBListGroup className="list-group-flush mt-5">
-
-            <NavLink className="text-dark font-weight-bolder" exact={true} to="/" activeClassName="activeClass">
+            
+            <NavLink className="text-dark font-weight-bolder" exact={true} to="/Dashboard" activeClassName="activeClass">
               <MDBListGroupItem style={{backgroundColor: 'transparent'}}>
                 <MDBIcon icon="chart-pie" className="mr-3"/>
                 Dashboard
               </MDBListGroupItem>
             </NavLink>
 
-            <NavLink className="text-dark font-weight-bolder" to="/profile" activeClassName="activeClass">
+            <NavLink className="text-dark font-weight-bolder" to="/Admin" activeClassName="activeClass">
               <MDBListGroupItem style={{backgroundColor: 'transparent'}}>
                 <MDBIcon icon="user" className="mr-3"/>
                 Admin

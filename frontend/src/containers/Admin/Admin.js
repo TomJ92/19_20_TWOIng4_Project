@@ -1,11 +1,11 @@
 import React from 'react';
-import Widgets from '../Widgets';
+import Form from '../../components/Form/Form.js';
 import NavBar from '../../components/NavBar/NavBar.js';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './Dashboard.css'
+import './Admin.css'
 
-class Dashboard extends React.Component {
+class Admin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
           </Col>
 
           <Col xs='10'>
-            <Widgets></Widgets>
+            <Form></Form>
           </Col>
         </Row>
       </div>
@@ -30,4 +30,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default Admin;
