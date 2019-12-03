@@ -1,9 +1,5 @@
 import React from 'react';
 import Widgets from '../Widgets';
-import NavBar from '../../components/NavBar/NavBar.js';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import './Dashboard.css'
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -15,16 +11,10 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="flexible-content">
-        <Row>
-          <Col xs='2'>
-            <NavBar></NavBar>
-          </Col>
+      <div>
 
-          <Col xs='10'>
-            <Widgets></Widgets>
-          </Col>
-        </Row>
+          <Widgets></Widgets>
+
       </div>
       );
   }

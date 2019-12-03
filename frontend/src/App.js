@@ -1,11 +1,11 @@
 import React from 'react';
-import Dashboard from './containers/DashBoard/Dashboard.js';
 import './App.css';
+import Routes from './Routes.js';
 
 function App() {
   return (
     <div>
-      <Dashboard/>
+      <Routes/>
     </div>
   );
 }
