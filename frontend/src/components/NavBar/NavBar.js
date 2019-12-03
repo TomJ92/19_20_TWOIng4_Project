@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../img/logo.png';
 import { MDBListGroup, MDBListGroupItem, MDBIcon, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from 'mdbreact';
 import { NavLink } from 'react-router-dom';
-//import { BrowserRouter as Router } from 'react-router-dom';
+import './NavBar.css'
 
 class NavBar extends React.Component {
   render(){
@@ -14,7 +14,7 @@ class NavBar extends React.Component {
 
           <MDBListGroup className="list-group-flush mt-5">
 
-            <NavLink className="text-dark font-weight-bolder" exact={true} to="/Dashboard" activeClassName="activeClass">
+            <NavLink className="text-dark font-weight-bolder" exact={true} to="/" activeClassName="activeClass">
               <MDBListGroupItem style={{backgroundColor: 'transparent'}}>
                 <MDBIcon icon="chart-pie" className="mr-3"/>
                 Dashboard
@@ -46,6 +46,7 @@ class NavBar extends React.Component {
             </MDBDropdown>
 
           </MDBListGroup>
+
         </div>
 
 );
