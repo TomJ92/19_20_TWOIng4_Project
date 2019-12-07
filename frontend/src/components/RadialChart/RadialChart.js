@@ -14,7 +14,7 @@ export default class RadialChart extends PureComponent {
         <RadialBarChart
           width={730}
           height={250}
-          cx={'50%'}
+          cx={'55%'}
           cy={'40%'}
           innerRadius={'75%'}
           outerRadius={'90%'}
@@ -37,7 +37,7 @@ export default class RadialChart extends PureComponent {
             fill="#A4A1FB"
           />
           <text
-            x={'50%'}
+            x={'55%'}
             y={'40%'}
             textAnchor="middle"
             dominantBaseline="middle"
@@ -52,15 +52,16 @@ export default class RadialChart extends PureComponent {
             <svg>
               <ellipse fill="rgba(237,236,254,1)" id="Circle_Sign__Light_Purple_" rx="5" ry="5" cx="5" cy="5">
               </ellipse>
+              <p>Dépense totale</p>
             </svg>
-            <span>Dépense totale</span>
           </div>
           <div class="col-sm">
             <svg style={{float: 'left'}}>
               <ellipse fill="rgba(164,161,251,1)" id="Circle_Sign__Vivid_Purple_" rx="5" ry="5" cx="5" cy="5">
               </ellipse>
+              <p class="align-left">Economie</p>
             </svg>
-            <span class="align-left">Economie</span>
+            
           </div>
         </div>
         <div class="row">
