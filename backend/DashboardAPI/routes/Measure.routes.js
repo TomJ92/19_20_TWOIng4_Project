@@ -1,35 +1,29 @@
 var express = require('express');
 var router = express.Router();
+var Measure = require('../controllers/Measure.controllers.js');
 
-// Require controller modules.
-var measure_controller = require('../controllers/bookController');
-/// MEASURE ROUTES ///
+// GET Display all measures
 
-// GET catalog home page.
-router.get('/', book_controller.index);
+router.get('/', measure.displayAll);
 
-// GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
-router.get('/book/create', book_controller.book_create_get);
+// GET one measure
 
-// POST request for creating Book.
-router.post('/book/create', book_controller.book_create_post);
+router.get('/:id', measure.displayOne);
 
-// GET request to delete Book.
-router.get('/book/:id/delete', book_controller.book_delete_get);
+// PUT Create one measure
 
-// POST request to delete Book.
-router.post('/book/:id/delete', book_controller.book_delete_post);
+router.put('/', measure.create);
 
-// GET request to update Book.
-router.get('/book/:id/update', book_controller.book_update_get);
+// POST Update one measure
 
-// POST request to update Book.
-router.post('/book/:id/update', book_controller.book_update_post);
+router.post('/', measure.update);
 
-// GET request for one Book.
-router.get('/book/:id', book_controller.book_detail);
+// DELETE Delete one measure
 
-// GET request for list of all Book items.
-router.get('/books', book_controller.book_list);
+router.delete('/', measure.delete);
+
+
+
+
 
 module.exports = router;
