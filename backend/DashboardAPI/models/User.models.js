@@ -1,17 +1,23 @@
 var mongoose = require('mongoose')
-  , Schema = mongoose.Schema;
+  , Schema = mongoose.Schema
+  , ObjectID = mongoose.Schema.Types.ObjectId;
 
-var userSchema = Schema({
-  userID : Number,
-  location : String,
-  personsinHouse : 
+var userSchema = new Schema({
+  location : 
+  {
+  	type : String,
+  	required : true,
+  },
+  personsInHouse : 
   {
   	type : Number,
   	min : 0,
+  	required : true,
   },
   houseSize : { 
   	type : 	String,
-  	enum: ['small', 'medium', 'big',]
+  	enum: ['small', 'medium', 'big',],
+  	required : true,
   },
 });
-var User  = mongoose.model('User', userSchema);
+module.exports  = mongoose.model('User', userSchema);
