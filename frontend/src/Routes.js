@@ -2,25 +2,27 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Admin from './containers/Admin/Admin.js';
 import Dashboard from './containers/DashBoard/Dashboard.js';
-import NavBar from './components/NavBar/NavBar.js';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import NavBar from './components/NavBar/SideBar/NavBar.js';
+import TopNavBar from './components/NavBar/TopBar/TopNavBar.js';
+import { MDBCol, MDBRow } from 'mdbreact';
 
 export default () => (
-  <div className="flexible-content">
-    <Row>
-      <Col xs='2'>
+  <div>
+    <MDBRow>
+      <MDBCol className='d-xs-none d-xl-block' xl='2'>
         <NavBar/>
-      </Col>
+      </MDBCol>
 
-      <Col xs='10'>
+      <MDBCol xs='12' xl='10'>
+        <TopNavBar className='d-xs-block d-xl-none'/>
+
         <Switch>
           <Route path="/" exact component={ Dashboard }/>
           <Route path="/Admin" exact component={ Admin }/>
         </Switch>
-      </Col>
+      </MDBCol>
 
-    </Row>
+    </MDBRow>
 
   </div>
     );

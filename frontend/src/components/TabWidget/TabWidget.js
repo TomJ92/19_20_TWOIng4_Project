@@ -1,5 +1,69 @@
 import React from 'react';
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import { MDBTable, MDBTableBody, MDBTableHead, MDBIcon } from 'mdbreact';
+import { ResponsiveContainer } from 'recharts';
+
+const data = {
+  columns: [
+    {
+      label: '#',
+      field: 'id',
+      sort: 'asc'
+    },
+    {
+      label: 'First',
+      field: 'first',
+      sort: 'asc'
+    },
+    {
+      label: 'Last',
+      field: 'last',
+      sort: 'asc'
+    },
+    {
+      label: 'Handle',
+      field: 'handle',
+      sort: 'asc'
+      }
+  ],
+  rows: [
+    {
+      'id': 1,
+      'first': 'Mark',
+      'last': 'Otto',
+      'handle': '@mdo'
+    },
+    {
+      'id': 2,
+      'first': 'Jacob',
+      'last': 'Thornton',
+      'handle': '@fat'
+    },
+    {
+      'id': 3,
+      'first': 'Larry',
+      'last': 'the Bird',
+      'handle': '@twitter'
+    },
+    {
+      'id': 4,
+      'first': 'Mark',
+      'last': 'Otto',
+      'handle': '@mdo'
+    },
+    {
+      'id': 5,
+      'first': 'Jacob',
+      'last': 'Thornton',
+      'handle': '@fat'
+    },
+    {
+      'id': 6,
+      'first': 'Larry',
+      'last': 'the Bird',
+      'handle': '@twitter'
+    }
+  ]
+};
 
 export default class TabWidget extends React.Component {
   constructor(props) {
@@ -9,41 +73,30 @@ export default class TabWidget extends React.Component {
     };
   }
 
+  componentDidMount() {
+
+  }
+
   render() {
     return (
-          <MDBTable hover>
-            <MDBTableHead color="blue-grey lighten-4">
-              <tr>
-                <th>#</th>
-                <th>First</th>
-                <th>Last</th>
-                <th>Handle</th>
-              </tr>
-            </MDBTableHead>
+      <div>
 
-            <MDBTableBody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
+        <div className="input-group xs-form form-sm form-1 mb-1">
+          <div className="input-group-prepend">
+            <span className="input-group-text purple lighten-3" id="basic-text1">
+              <MDBIcon className="text-white" icon="search" />
+            </span>
+          </div>
+          <input className="form-control" type="text" placeholder="Search" aria-label="Search" />
+        </div>
 
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </MDBTableBody>
+        <ResponsiveContainer width='100%' height='auto'>
+          <MDBTable scrollY hover>
+            <MDBTableHead columns={data.columns} />
+            <MDBTableBody rows={data.rows} />
           </MDBTable>
+        </ResponsiveContainer>
+      </div>
     );
   }
 }

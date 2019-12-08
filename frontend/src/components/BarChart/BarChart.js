@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { ResponsiveContainer } from 'recharts';
 
 export default class BarChart extends Component {
   constructor(props){
@@ -52,13 +53,19 @@ export default class BarChart extends Component {
     };
   }
 
+  componentDidMount() {
+
+  }
+
   render(){
     return (
       <div>
         <h6>Ventes Globales</h6>
-        <div>
-          <Bar data={this.state.dataBar} height={200} width={400} options={this.state.barChartOptions}/>
-        </div>
+        <ResponsiveContainer width='100%' height={214}>
+          <div>
+            <Bar data={this.state.dataBar} height={200} width={400} options={this.state.barChartOptions}/>
+          </div>
+        </ResponsiveContainer>
       </div>
     );
   }
