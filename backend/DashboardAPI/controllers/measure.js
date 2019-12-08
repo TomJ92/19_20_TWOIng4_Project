@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-import * as mongoose from 'mongoose';
 //Variable measure du model
-var Measure = require('../models/Measure.models.js');
-var ObjectID = mongoose.Schema.Types.ObjectId
+var Measure = require('../models/measure');
 
 // Display all Measures.
 exports.displayAll = function(req, res) {
@@ -61,8 +59,8 @@ exports.displayOne = function(req,res)
 			value : req.body.value
 		}
 		//Recherche par champ
-		Measure.find(paramsMeasure);
-		.then(function(measure))
+		Measure.find(paramsMeasure)
+		.then(function(measure)
 		{
 			if(measure)
 			{
@@ -75,7 +73,7 @@ exports.displayOne = function(req,res)
 					message : 'Not found with such parameters' + paramsMeasure
 				});
 			}
-		}
+		})
 		.catch(function(error)
 		{
 			if(error.kind == 'ObjectId')
@@ -93,14 +91,13 @@ exports.displayOne = function(req,res)
 				});
 			}
 		});
-		else
+	}
+	else
+	{
+		res.send(
 		{
-			res.send(
-			{
-				message : 'No parameters found'
-			});
-		}
-
+			message : 'No parameters found'
+		});
 	}
 };
 exports.create = function(req,res)
@@ -145,7 +142,7 @@ exports.create = function(req,res)
 			value:req.body.value
 
 		}); 
-		measure_created.save();
+		measure_created.save()
 		.then(function(data)
 		{
 			res.send(
@@ -167,7 +164,7 @@ exports.update = function(req,res)
 {
 	if(req.body.measureId)
 	{
-		Measure.findById(req.body.measureId);
+		Measure.findById(req.body.measureId)
 		.then(function(measure)
 		{
 			if(measure)

@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-import * as mongoose from 'mongoose';
 //Variable sensor du model
-var Sensor = require('../models/Sensor.models.js');
-var ObjectID = mongoose.Schema.Types.ObjectId
+var Sensor = require('../models/sensor');
 
 // Display all Sensors.
 exports.displayAll = function(req, res) {
@@ -60,8 +58,8 @@ exports.displayOne = function(req,res)
 			userID : req.body.userID,
 		}
 		//Recherche par champ
-		Sensor.find(paramsSensor);
-		.then(function(sensor))
+		Sensor.find(paramsSensor)
+		.then(function(sensor)
 		{
 			if(sensor)
 			{
@@ -74,7 +72,7 @@ exports.displayOne = function(req,res)
 					message : 'Not found with such parameters' + paramsSensor
 				});
 			}
-		}
+		})
 		.catch(function(error)
 		{
 			if(error.kind == 'ObjectId')
@@ -92,6 +90,7 @@ exports.displayOne = function(req,res)
 				});
 			}
 		});
+	}
 		else
 		{
 			res.send(
@@ -99,8 +98,6 @@ exports.displayOne = function(req,res)
 				message : 'No parameters found'
 			});
 		}
-
-	}
 };
 exports.create = function(req,res)
 {
@@ -136,7 +133,7 @@ exports.create = function(req,res)
 			userID : req.body.userID,
 
 		}); 
-		sensor_created.save();
+		sensor_created.save()
 		.then(function(data)
 		{
 			res.send(
@@ -158,7 +155,7 @@ exports.update = function(req,res)
 {
 	if(req.body.sensorId)
 	{
-		Sensor.findById(req.body.sensorId);
+		Sensor.findById(req.body.sensorId)
 		.then(function(sensor)
 		{
 			if(sensor)

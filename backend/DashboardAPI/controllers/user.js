@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-import * as mongoose from 'mongoose';
 //Variable user du model
-var User = require('../models/User.models.js');
-var ObjectID = mongoose.Schema.Types.ObjectId
+var User = require('../models/user');
 
 // Display all Users.
 exports.displayAll = function(req, res) {
@@ -56,12 +54,12 @@ exports.displayOne = function(req,res)
 	{
 		var paramsUser = {
 			location : req.body.location,
-			personsInHouse : req.body.personsInHouse
+			personsInHouse : req.body.personsInHouse,
 			houseSize : req.body.houseSize,
 		}
 		//Recherche par champ
-		User.find(paramsUser);
-		.then(function(user))
+		User.find(paramsUser)
+		.then(function(user)
 		{
 			if(user)
 			{
@@ -74,7 +72,7 @@ exports.displayOne = function(req,res)
 					message : 'Not found with such parameters' + paramsUser
 				});
 			}
-		}
+		})
 		.catch(function(error)
 		{
 			if(error.kind == 'ObjectId')
@@ -92,15 +90,15 @@ exports.displayOne = function(req,res)
 				});
 			}
 		});
-		else
-		{
-			res.send(
-			{
-				message : 'No parameters found'
-			});
-		}
-
 	}
+	else
+	{
+		res.send(
+		{
+			message : 'No parameters found'
+		});
+	}
+
 };
 exports.create = function(req,res)
 {
@@ -132,11 +130,11 @@ exports.create = function(req,res)
 		var user_created = new User(
 		{
 			location : req.body.location,
-			personsInHouse : req.body.personsInHouse
+			personsInHouse : req.body.personsInHouse,
 			houseSize : req.body.houseSize,
 
 		}); 
-		user_created.save();
+		user_created.save()
 		.then(function(data)
 		{
 			res.send(
@@ -158,7 +156,7 @@ exports.update = function(req,res)
 {
 	if(req.body.userId)
 	{
-		User.findById(req.body.userId);
+		User.findById(req.body.userId)
 		.then(function(user)
 		{
 			if(user)
@@ -167,7 +165,7 @@ exports.update = function(req,res)
 					req.body.userId,
 					{$set: {
 						location : req.body.location,
-						personsInHouse : req.body.personsInHouse
+						personsInHouse : req.body.personsInHouse,
 						houseSize : req.body.houseSize,
 					}},
 					{ new: true }
