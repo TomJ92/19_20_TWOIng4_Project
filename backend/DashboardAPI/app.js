@@ -6,9 +6,29 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var requestsRouter = require('./routes/request');
 
 var app = express();
+
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+const dbName = "DashboardProject" ;
+const dbURL = ' mongodb://localhost:27017/DashboardProject' ;
+// Connecting to the database
+mongoose.connect(dbURL,
+{
+useUnifiedTopology: true,
+useNewUrlParser: true,
+})
+.then(() => console.log('DB Connected!'))
+.catch(err => {
+console.log('DB Connection Error: ${err.message}');
+});
+//Developper Mozilla Express Tutorial Part 3 Using a Databse with Mangoose
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,7 +42,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/request', requestsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
