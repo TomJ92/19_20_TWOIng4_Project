@@ -8,19 +8,19 @@ router.get('/', measure.displayAll);
 
 // GET one measure
 
-router.get('/:id', measure.displayOne);
+router.get('/display', measure.displayOne);
 
 // PUT Create one measure
 
-router.put('/', measure.create);
+router.put('/create', measure.create);
 
 // POST Update one measure
 
-router.post('/', measure.update);
+router.post('/update', measure.update);
 
 // DELETE Delete one measure
 
-router.delete('/', measure.delete);
+router.delete('/delete', measure.delete);
 
 
 
