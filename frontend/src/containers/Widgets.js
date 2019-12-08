@@ -5,9 +5,7 @@ import RadialChart from '../components/RadialChart/RadialChart.js';
 import RadChart from '../components/RadarChart/RadarChart.js';
 import BarChart from '../components/BarChart/BarChart.js';
 import TabWidget from '../components/TabWidget/TabWidget.js';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { MDBCard, MDBCardBody, MDBCol, MDBRow } from 'mdbreact';
 
 export default class Widgets extends React.Component {
   constructor(props) {
@@ -19,60 +17,60 @@ export default class Widgets extends React.Component {
 
   render() {
     return (
-      <div>
-        <Row>
-          <Col xs="10" md="auto" className="mt-1">
-            <Card className="text-center shadow-box hoverable">
-              <Card.Body>
-                <PieChart/>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col xs="10" md="auto" className="mt-1">
-            <Card className="text-center shadow-box hoverable">
-              <Card.Body>
-                <AreaChart/>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col xs="10" md="auto" className="mt-1">
-            <Card className="text-center shadow-box hoverable">
-              <Card.Body>
-                <RadialChart/>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col xs="10" md="auto" className="mt-1">
-            <Card className="text-center shadow-box hoverable">
-              <Card.Body>
-                <RadChart/>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col xs="10" md="auto" className="mt-1">
-            <Card className="text-center shadow-box hoverable">
-              <Card.Body>
-                <BarChart/>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col xs="10" md="auto" className="mt-1">
-            <Card className="text-center shadow-box hoverable">
-              <Card.Body>
+      <div className='mr-4'>
+        <MDBRow>
+          <MDBCol xs="12" md="6">
+            <MDBCard className="text-center shadow-box hoverable mt-1">
+              <MDBCardBody>
                 <TabWidget/>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+
+          <MDBCol xs="12" md="6">
+            <MDBCard className="text-center shadow-box hoverable mt-1">
+              <MDBCardBody>
+                <BarChart/>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+
+        <MDBRow>
+          <MDBCol xs="12" md="6" xl="5">
+            <MDBCard className="text-center shadow-box hoverable mt-1">
+              <MDBCardBody>
+                <PieChart/>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+
+          <MDBCol xs="12" md="6" xl="4">
+            <MDBCard className="text-center shadow-box hoverable mt-1">
+              <MDBCardBody>
+                <RadChart/>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+
+          <MDBCol xl='3'>
+            <MDBCard className="text-center shadow-box hoverable mt-1">
+              <MDBCardBody>
+                <RadialChart/>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+
+        <MDBRow>
+          <MDBCol xs='12' md='12'>
+            <MDBCard className="text-center shadow-box hoverable mt-1">
+              <MDBCardBody>
+                <AreaChart/>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
       </div>
       );
   }

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
+import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 
 const data = [
   {
@@ -25,18 +25,25 @@ const data = [
 export default class RadChart extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/dpgb3xjq/';
 
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <div>
-        <h5>Ventes multimédia</h5>
-        <RadarChart cx='50%' cy='50%' outerRadius={150} width={300} height={300} data={data}>
-          <PolarGrid/>
-          <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis angle={30} domain={[0, 150]} />
-          <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-          <Radar name="Lily" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
-          <Legend/>
-        </RadarChart>
+        <h6>Ventes multimédia</h6>
+
+        <ResponsiveContainer width='100%' height={150}>
+          <RadarChart cx='50%' cy='45%' outerRadius={50}  data={data}>
+            <PolarGrid/>
+            <PolarAngleAxis dataKey="subject" style={{ fontSize: 13 }}/>
+            <PolarRadiusAxis angle={30} domain={[0, 150]} style={{ fontSize: 10 }}/>
+            <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+            <Radar name="Lily" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+            <Legend iconType='diamond' style={{ fontSize: 10 }} height={10}/>
+          </RadarChart>
+        </ResponsiveContainer>
       </div>
         );
   }
