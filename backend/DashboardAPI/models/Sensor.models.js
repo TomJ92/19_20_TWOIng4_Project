@@ -2,13 +2,21 @@ var mongoose = require('mongoose')
    , Schema = mongoose.Schema
   , ObjectID = mongoose.Schema.Types.ObjectId;
 
-var sensorSchema = Schema({
-  sensorID : Number,
-  creationDate : String,
-  userID : Number,
+var sensorSchema = new Schema({
+  creationDate : 
+  {
+  	type : 	String,
+  	required : true,
+  },
   location : { 
   	type : 	String,
   	enum: ['kitchen', 'livingRoom', 'bedroom','bathroom','entrance'],
+  	required : true,
+  },
+  userID : 
+  {
+  	type : ObjectID,
+  	required : true,
   },
 });
-var Sensor  = mongoose.model('Sensor', sensorSchema);
+module.exports  = mongoose.model('Sensor', sensorSchema);
