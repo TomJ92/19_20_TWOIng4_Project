@@ -78,7 +78,7 @@ exports.displayOne = function(req,res)
 		}
 		.catch(function(error)
 		{
-			if(error.kind == 'ObjectID')
+			if(error.kind == 'ObjectId')
 			{
 				res.send(
 				{
