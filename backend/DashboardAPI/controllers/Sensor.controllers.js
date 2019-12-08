@@ -1,44 +1,261 @@
 var express = require('express');
 var router = express.Router();
 import * as mongoose from 'mongoose';
+//Variable sensor du model
 var Sensor = require('../models/Sensor.models.js');
+var ObjectID = mongoose.Schema.Types.ObjectId
 
-// Display list of all Sensors.
-exports.sensor_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Sensor list');
+// Display all Sensors.
+exports.displayAll = function(req, res) {
+    //Sensor query
+    Sensor.find()
+    .then(function(sensor)
+    {
+    	res.send(sensor);
+    })
+    .catch(function (err)
+    {
+    	res.send({
+    		message : 'Erreur de liste'
+    	});
+    });
 };
 
-// Display detail page for a specific Sensor.
-exports.sensor_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Sensor detail: ' + req.params.id);
-};
+//Afficher une sensor spécifique
+exports.displayOne = function(req,res)
+{
+	//Si l'id est déja spécifié
+	if(req.body.sensorId)
+	{
+		//query
+		Sensor.findById(req.body.sensorId)
+		.then(function(sensor)
+		{
+			if(sensor)
+			{
+				res.send(sensor);
+			}
+			else
+			{
+				res.send(
+				{
+					message : 'No sensor with Id ' +req.body.sensorId
+				});
+			}
+		})
+		.catch(function(error)
+		{
+			res.send(
+			{
+				message : 'Error during findId' + req.body.sensorId
+			});
+		})
+	}
+	//si il y a des paramètres dans body
+	else if(req.body)
+	{
+		var paramsSensor = {
+			creationDate : req.body.creationDate,
+			location : req.body.location,
+			userID : req.body.userID,
+		}
+		//Recherche par champ
+		Sensor.find(paramsSensor);
+		.then(function(sensor))
+		{
+			if(sensor)
+			{
+				res.send(sensor);
+			}
+			else
+			{
+				res.send(
+				{
+					message : 'Not found with such parameters' + paramsSensor
+				});
+			}
+		}
+		.catch(function(error)
+		{
+			if(error.kind == 'ObjectID')
+			{
+				res.send(
+				{
+					message : 'Not found with such parameters' + paramsSensor
+				});
+			}
+			else
+			{
+				res.send(
+				{
+					message : 'Error during find function with parameters' + paramsSensor
+				});
+			}
+		});
+		else
+		{
+			res.send(
+			{
+				message : 'No parameters found'
+			});
+		}
 
-// Display Sensor create form on GET.
-exports.sensor_create_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Sensor create GET');
+	}
 };
+exports.create = function(req,res)
+{
+	///Tests si champs vides
+	if(!req.body.creationDate)
+	{
+		res.send(
+		{
+			message : 'creationDate field is empty'
+		});
+	}
+	else if(!req.body.location)
+	{
+		res.send(
+		{
+			message : 'location field is empty'
+		});
+	}
+	else if(!req.body.userID)
+	{
+		res.send(
+		{
+			message : 'userID field is empty'
+		});
+	}
+	else
+	{
+		//On initialise la mesure à créer à partir des champs
+		var sensor_created = new Sensor(
+		{
+			creationDate : req.body.creationDate,
+			location : req.body.location,
+			userID : req.body.userID,
 
-// Handle Sensor create on POST.
-exports.sensor_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Sensor create POST');
+		}); 
+		sensor_created.save();
+		.then(function(data)
+		{
+			res.send(
+			{
+				message : 'Added new sensor' + data
+			});
+		})
+		.catch(function(error)
+		{
+			res.send(
+			{
+				message : 'Error during adding new sensor' + sensor_created
+			});
+		});
+	}
 };
-
-// Display Sensor delete form on GET.
-exports.sensor_delete_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Sensor delete GET');
+//CRUD : UPDATE
+exports.update = function(req,res)
+{
+	if(req.body.sensorId)
+	{
+		Sensor.findById(req.body.sensorId);
+		.then(function(sensor)
+		{
+			if(sensor)
+			{
+				Sensor.findByIdAndUpdate(
+					req.body.sensorId,
+					{$set: {
+						creationDate : req.body.creationDate,
+						location : req.body.location,
+						userID : req.body.userID,
+					}},
+					{ new: true }
+					)
+				.then(function(new_sensor)
+				{
+					if(new_sensor)
+					{
+						res.send(new_sensor);
+					}
+					else
+					{
+						res.send(
+						{
+							message : 'SensorId not found' + req.body.sensorId
+						});
+					}
+				})
+				.catch(function(error)
+				{
+					if(erro.king == 'ObjectId')
+					{
+						res.send(
+						{
+							message : 'SensorId not found' + req.body.sensorId
+						});
+					}
+					else
+					{
+						res.send(
+						{
+							message : 'ERROR UPDATING MEASUREID' + req.body.sensorId
+						});
+					}
+				});
+			}
+			else
+			{
+				res.send(
+				{
+					messae : 'sensor Id not found ' + sensorId
+				});
+			}
+		});
+	}
+	else
+	{
+		res.send(
+		{
+			message : 'sensorId is empty'
+		});
+	}
 };
-
-// Handle Sensor delete on POST.
-exports.sensor_delete_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Sensor delete POST');
-};
-
-// Display Sensor update form on GET.
-exports.sensor_update_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Sensor update GET');
-};
-
-// Handle Sensor update on POST.
-exports.sensor_update_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Sensor update POST');
+exports.delete = function(req,res)
+{
+	Sensor.findByIdAndRemove(req.body.sensorId)
+	.then(function(sensor)
+	{
+		if(sensor)
+		{
+			res.send(
+			{
+				message : 'Sensor deleted with Id' + req.body.sensorId
+			});
+		}
+		else
+		{
+			res.send(
+			{
+				message : 'Sensor not found with Id' + req.body.sensorId
+			});
+		}
+	})
+	.catch(function(error)
+	{
+		if(error.kind == 'ObjectId')
+		{
+			res.send(
+			{
+				message : 'Sensor not found with Id' + req.body.sensorId
+			});
+		}
+		else
+		{
+			res.send(
+			{
+				message : 'Error while deleting sensor with Id' + req.body.sensorId
+			});
+		}
+	});
 };
