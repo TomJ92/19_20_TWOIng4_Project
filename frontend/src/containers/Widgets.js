@@ -53,7 +53,7 @@ export default class Widgets extends React.Component {
             </MDBCard>
           </MDBCol>
 
-          <MDBCol xs='12' md='9' xl="3">
+          <MDBCol xl='3'>
             <MDBCard className="text-center shadow-box hoverable mt-1">
               <MDBCardBody>
                 <RadialChart/>

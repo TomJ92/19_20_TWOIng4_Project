@@ -41,7 +41,7 @@ export default class PieChart extends React.Component {
 
             <div className='d-md-none d-lg-block'>
               <MDBListGroup className="list-group-flush d-flex align-items-center" style={{fontSize: 12}}>
-                
+
                 <MDBListGroupItem>
                   <text className="pr-2">
                     Ordinateurs

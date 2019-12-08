@@ -18,15 +18,17 @@ export default class RadialChart extends PureComponent {
 
         <ResponsiveContainer width='100%' height={150}>
           <div className='d-flex flex-column'>
-            <RadialBarChart width={250} height={150} cx='50%' cy='50%' innerRadius={60} outerRadius={50} barSize={20} data={data} startAngle={90} endAngle={-270}>
+            <div className='d-flex justify-content-center'>
+              <RadialBarChart width={250} height={150} cx='50%' cy='50%' innerRadius={60} outerRadius={50} barSize={20} data={data} startAngle={90} endAngle={-270}>
 
-              <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false}/>
-              <RadialBar background clockWise dataKey="value" cornerRadius={'50%'} fill="#A4A1FB"/>
-              <text x={'50%'} y={'50%'} textAnchor="middle" dominantBaseline="middle" className="progress-label" style={{fontSize: 10}}>
-                48% Economisé
-              </text>
+                <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false}/>
+                <RadialBar background clockWise dataKey="value" cornerRadius={'50%'} fill="#A4A1FB"/>
+                <text x={'50%'} y={'50%'} textAnchor="middle" dominantBaseline="middle" className="progress-label" style={{fontSize: 10}}>
+                  48% Economisé
+                </text>
 
-            </RadialBarChart>
+              </RadialBarChart>
+            </div>
 
             <div className='d-flex flex-row justify-content-between' style={{fontSize: 10}}>
 
