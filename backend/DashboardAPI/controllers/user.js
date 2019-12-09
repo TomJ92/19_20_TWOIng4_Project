@@ -257,3 +257,48 @@ exports.delete = function(req,res)
 		}
 	});
 };
+exports.count = function(req,res)
+{
+	User.count()   
+	.then(function(user_count)
+	{
+		if (user_count) {
+			res.send({user_count});
+		}
+		else
+		{
+			res.send({
+				message: 'Error counting User'
+			});
+		}
+	})
+	.catch(function(error)
+	{
+		if (error.kind === 'ObjectId') {
+			res.send({
+				message: 'Erreur counting User'
+			});
+		}
+		else
+		{
+			res.send({
+				message: 'Other error counting User'
+			}
+		});
+		});
+};
+// List of all User ID.
+exports.list_ID = function(req, res) {
+    //Renvoie tous les users avec leurs champs ID
+    User.find().select('_id')
+    .then(function(user)
+    {
+    	res.send(user);
+    })
+    .catch(function (err)
+    {
+    	res.send({
+    		message : 'Erreur de liste'
+    	});
+    });
+};

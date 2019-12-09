@@ -256,3 +256,60 @@ exports.delete = function(req,res)
 		}
 	});
 };
+exports.count = function(req,res)
+{
+	Sensor.count()   
+	.then(function()
+	{
+		if (sensor_count) {
+			res.send({sensor_count});
+		}
+		else
+		{
+			res.send({
+				message: 'Error counting Sensor'
+			});
+		}
+	})
+	.catch(function(error)
+	{
+		if (error.kind === 'ObjectId') {
+			res.send({
+				message: 'Erreur counting Sensor'
+			});
+		}
+		else
+		{
+			res.send({
+				message: 'Other error counting sensor'
+			}
+		});
+		});
+};
+exports.derniers = function(req, res)
+{
+
+  //Trouve et classe tous les capteurs par date de creation
+    Sensor.find().sort({ creationDate: -1 })
+    .then(function(sensors)
+    {
+    	if(sensors)
+    	{
+    		//On pourra sélectionner directement les 6 premiers (les plus récents)
+    		res.send(sensors);
+    	}
+      else
+      {
+        res.send({
+          message: 'No sensors found '
+        });
+      }
+    })
+    .catch(function(err)
+    {
+      res.send({
+        message: 'Error last sensor'
+      });
+    });
+  }
+};

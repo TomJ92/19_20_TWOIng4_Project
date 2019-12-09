@@ -266,3 +266,77 @@ exports.delete = function(req,res)
 		}
 	});
 };
+exports.count = function(req,res)
+{
+	Measure.count()   
+	.then(function(measure_count)
+	{
+		if (measure_count) {
+			res.send({measure_count});
+		}
+		else
+		{
+			res.send({
+				message: 'Error counting Measure'
+			});
+		}
+	})
+	.catch(function(error)
+	{
+		if (error.kind === 'ObjectId') {
+			res.send({
+				message: 'Erreur counting Measure'
+			});
+		}
+		else
+		{
+			res.send({
+				message: 'Other error counting Measure'
+			}
+		});
+		});
+};
+exports.derniers = function(req, res)
+{
+
+  //Trouve et classe tous les capteurs par date de creation
+  Measure.find().sort({ creationDate: -1 })
+  .then(function(measures)
+  {
+  	if(measures)
+  	{
+    		//On pourra sélectionner directement les 6 premiers (les plus récents)
+    		res.send(measures);
+    	}
+    	else
+    	{
+    		res.send({
+    			message: 'No measures found '
+    		});
+    	}
+    })
+  .catch(function(err)
+  {
+  	res.send({
+  		message: 'Error last sensor'
+  	});
+  });
+}
+};
+exports.count_type = function(req,res)
+{
+	Measure.aggregate([
+	{
+		$group: { _id: { type: '$type' }, vendors: { $addToSet: '$vendor'} }
+	},
+	{
+		$unwind:"$vendors"
+	},
+	{
+		$group: { _id: "$_id", vendorCount: { $sum:1} }
+	}
+	]);
+}
+
+
+
