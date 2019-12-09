@@ -13,7 +13,7 @@ class NavBar extends React.Component {
 
             <NavLink className="text-dark font-weight-bolder p-3" exact={true} to="/Admin" activeClassName="activeClass">
               <MDBListGroupItem className='item' style={{backgroundColor: 'transparent'}}>
-                <MDBIcon icon="chart-pie" className="pr-3"/>
+                <MDBIcon icon="user" className="pr-3"/>
                 Add a User
               </MDBListGroupItem>
             </NavLink>
