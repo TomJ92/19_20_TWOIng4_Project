@@ -4,7 +4,7 @@ import { MDBListGroupItem, MDBNav, MDBDropdown, MDBDropdownToggle, MDBDropdownMe
 import { NavLink } from 'react-router-dom';
 import './TopNavBar.css'
 
-class NavBar extends React.Component {
+class TopBar extends React.Component {
   render(){
     return (
 
@@ -52,4 +52,4 @@ class NavBar extends React.Component {
 }
 }
 
-export default NavBar;
+export default TopBar;
