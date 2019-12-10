@@ -1,88 +1,37 @@
-import React from "react";
-import { Doughnut } from "react-chartjs-2";
-import { MDBListGroup, MDBListGroupItem, MDBBadge } from "mdbreact";
-import { ResponsiveContainer } from 'recharts';
+import React, { PureComponent } from 'react';
+import {
+  PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer
+} from 'recharts';
 
-export default class PieChart extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      dataDoughnut: {
-        labels: ["Ordinateurs", "Tablettes", "Logiciels", "Smartphones"],
-        datasets: [
-          {
-            data: [300, 50, 100, 40],
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#388e3c"],
-            hoverBackgroundColor: [
-              "#FF5A5E",
-              "#5AD3D1",
-              "#FFC870",
-              "#388e3c ",
-            ]
-          }
-        ]
-      }
-    };
-  }
+const data = [
+  { name: 'Group A', value: 400 },
+  { name: 'Group B', value: 300 },
+  { name: 'Group C', value: 300 },
+  { name: 'Group D', value: 200 },
+];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-  componentDidMount() {
 
-  }
+export default class Example extends PureComponent {
+  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/3Leoa7f4/';
 
   render() {
     return (
       <div>
-        <h6>Ventes effectuées</h6>
-        <ResponsiveContainer width='100%' height={150}>
-          <div className="d-flex flex-row">
-            <div className="d-flex align-items-center">
-              <Doughnut data={this.state.dataDoughnut} options={{ responsive: true }}/>
-            </div>
+        <h6>Ventes multimédia</h6>
 
-            <div className='d-md-none d-lg-block'>
-              <MDBListGroup className="list-group-flush d-flex align-items-center" style={{fontSize: 12}}>
-
-                <MDBListGroupItem>
-                  <text className="pr-2">
-                    Ordinateurs
-                  </text>
-                  <MDBBadge color="danger-color" pill className="float-right">
-                    300
-                  </MDBBadge>
-                </MDBListGroupItem>
-
-                <MDBListGroupItem>
-                  <text className="pr-2">
-                    Tablettes
-                  </text>
-                  <MDBBadge color="info-color" pill className="float-right">
-                    50
-                  </MDBBadge>
-                </MDBListGroupItem>
-
-                <MDBListGroupItem>
-                  <text className="pr-2">
-                    Logiciels
-                  </text>
-                  <MDBBadge color="amber darken-1" pill className="float-right">
-                    100
-                  </MDBBadge>
-                </MDBListGroupItem>
-
-                <MDBListGroupItem>
-                  <text className="pr-2">
-                    Smartphones
-                  </text>
-                  <MDBBadge color="green darken-2" pill className="float-right">
-                    40
-                  </MDBBadge>
-                </MDBListGroupItem>
-
-              </MDBListGroup>
-            </div>
-          </div>
+        <ResponsiveContainer width='100%' height={200}>
+          <PieChart onMouseEnter={this.onPieEnter}>
+            <Pie data={data} cx='50%' cy='50%' innerRadius={50} outerRadius={70} fill="#8884d8" dataKey="value">
+              {
+                data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+              }
+            </Pie>
+            <Tooltip/>
+            <Legend iconType='circle' style={{ fontSize: 10 }}/>
+          </PieChart>
         </ResponsiveContainer>
       </div>
-);
-}
+    );
+  }
 }

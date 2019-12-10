@@ -77,7 +77,7 @@ class AddUser extends React.Component {
             <MDBRow>
               <MDBCol>
                 <form onSubmit={ this.handleSubmit }>
-                  <p className="h4 text-center py-4">Enregistrer un nouvel utilisateur</p>
+                  <p className="h4 text-center py-4">Enregistrer un nouveau capteur</p>
 
                   <div className="grey-text">
                     <p icon='user' className="h7 py-3"><MDBIcon size="2x" icon="user" className="pr-3"/>L'ID utilisateur est généré automatiquement !</p>

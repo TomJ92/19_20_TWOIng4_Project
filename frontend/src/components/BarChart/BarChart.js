@@ -19,11 +19,6 @@ export default class BarChart extends Component {
             data: [56, 24, 5, 16, 45, 24, 8],
             backgroundColor: 'rgba(90, 173, 246, 0.5)',
             borderWidth: 1
-          }, {
-            label: '#3',
-            data: [12, 25, 54, 3, 15, 44, 3],
-            backgroundColor: 'rgba(245, 192, 50, 0.5)',
-            borderWidth: 1
           }
         ]
       },
@@ -61,7 +56,7 @@ export default class BarChart extends Component {
     return (
       <div>
         <h6>Ventes Globales</h6>
-        <ResponsiveContainer width='100%' height={214}>
+        <ResponsiveContainer width='100%'>
           <div>
             <Bar data={this.state.dataBar} height={200} width={400} options={this.state.barChartOptions}/>
           </div>
