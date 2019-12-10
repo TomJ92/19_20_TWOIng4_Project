@@ -1,13 +1,17 @@
 var createError = require('http-errors');
 var express = require('express');
+var cors = require('cors');
+var app = express();
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+app.use(cors());
+
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const dbName = "DashboardProject" ;
-const dbURL = ' mongodb://localhost:27017/DashboardProject' ;
+const dbURL = ' mongodb://localhost:27017/DashboardProject';
 // Connecting to the database
 mongoose.connect(dbURL,
 {
@@ -33,8 +37,6 @@ var measureRouter = require('./routes/measure');
 var usersRouter = require('./routes/users');
 var sensorsRouter = require('./routes/sensors');
 var measuresRouter = require('./routes/measures');
-
-var app = express();
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');

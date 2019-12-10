@@ -51,8 +51,14 @@ class AddUser extends React.Component {
     }
 
 
-    axios.put('http://localhost:3000/user/create', newUser)
+    axios.put('http://localhost:3000/user/', newUser)
     .then((response) => {
+      this.setState({
+        location: "",
+        personsInHouse: null,
+        houseSize: ""
+      });
+      window.location.reload();
 
       console.log(response);
     })
