@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 //Variable sensor du model
 var Sensor = require('../models/sensor');
+var Measure = require('../models/measure');
 var mongoose = require('mongoose');
 var ObjectID = mongoose.Types.ObjectId;
 
@@ -235,7 +236,7 @@ exports.delete = function(req,res)
 	{
 		if(sensor)
 		{
-			Sensor.find({
+			Measure.find({
 				sensorID : new ObjectID(req.body.sensorId)
 			}).remove().exec()
 			.then(function(measures_removed)

@@ -14,4 +14,7 @@ router.get('/count', User.count);
 
 router.get('/list_id', User.list_ID);
 
+// GET count per one country 
+router.get('/count_pays',User.count_pays)
+
 module.exports = router;

@@ -316,3 +316,26 @@ exports.list_ID = function(req, res) {
     	});
     });
 };
+exports.count_pays = function(req,res)
+{
+	if(req.body.location)
+	{
+	User.find({location : req.body.location}).countDocuments()   
+	.then(function(user_count)
+	{
+		res.send({user_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+}
+else
+{
+	res.send({
+			message: 'No params count_pays'
+		});
+}
+};

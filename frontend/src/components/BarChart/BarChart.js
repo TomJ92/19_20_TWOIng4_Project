@@ -9,15 +9,15 @@ export default class BarChart extends Component {
     super(props);
     this.state = {
       dataBar: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        labels: ['Chine', 'Japon', 'Philippines', 'Russie', 'France', 'Grèce', 'Italie'],
         datasets: [
           {
-            label: '#1',
+            label: 'Nombre d\'utilisateurs',
             data: [12, 39, 3, 50, 2, 32, 66],
             backgroundColor: 'rgba(245, 74, 85, 0.5)',
             borderWidth: 1
           }, {
-            label: '#2',
+            label: 'Nombre total de personnes dans toutes les maisons',
             data: [56, 24, 5, 16, 45, 24, 8],
             backgroundColor: 'rgba(90, 173, 246, 0.5)',
             borderWidth: 1
@@ -57,7 +57,7 @@ export default class BarChart extends Component {
   render(){
     return (
       <div>
-        <h6>Ventes Globales</h6>
+        <h6>Répartition par pays</h6>
         <ResponsiveContainer width='100%'>
           <div>
             <Bar data={this.state.dataBar} height={200} width={400} options={this.state.barChartOptions}/>
