@@ -259,7 +259,7 @@ exports.delete = function(req,res)
 exports.count = function(req,res)
 {
 	Sensor.count()   
-	.then(function()
+	.then(function(sensor_count)
 	{
 		if (sensor_count) {
 			res.send({sensor_count});
@@ -290,7 +290,7 @@ exports.derniers = function(req, res)
 {
 
   //Trouve et classe tous les capteurs par date de creation
-    Sensor.find().sort({ creationDate: -1 })
+    Sensor.find().sort({ creationDate: -1 }).limit(6)
     .then(function(sensors)
     {
     	if(sensors)

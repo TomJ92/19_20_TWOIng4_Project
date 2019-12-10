@@ -19,4 +19,4 @@ var sensorSchema = new Schema({
   	required : true,
   },
 });
-module.exports  = mongoose.model('Sensor', sensorSchema);
+module.exports  = mongoose.model('Sensor', sensorSchema, 'Sensor');
