@@ -316,14 +316,12 @@ exports.list_ID = function(req, res) {
     	});
     });
 };
-exports.count_pays = function(req,res)
+exports.count_chine = function(req,res)
 {
-	if(req.body.location)
+	User.find({location : "china"}).countDocuments()   
+	.then(function(measure_count)
 	{
-	User.find({location : req.body.location}).countDocuments()   
-	.then(function(user_count)
-	{
-		res.send({user_count});
+		res.send({measure_count});
 	})
 	.catch(function(error)
 	{
@@ -331,11 +329,303 @@ exports.count_pays = function(req,res)
 			message: 'Error counting User'
 		});
 	});
-}
-else
+};
+exports.count_japon = function(req,res)
 {
-	res.send({
-			message: 'No params count_pays'
+	User.find({location : "japan"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
 		});
-}
+	});
+};
+exports.count_phiphi = function(req,res)
+{
+	
+	User.find({location : "philippines"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_russie = function(req,res)
+{
+	
+	User.find({location : "russia"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_greece = function(req,res)
+{
+	
+	User.find({location : "greece"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_france = function(req,res)
+{
+	
+	User.find({location : "france"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_italy = function(req,res)
+{
+	
+	User.find({location : "italy"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_chine = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "china"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_japon = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "japan"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_phiphi = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "philippines"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_russie = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "russia"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_france = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "france"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_greece = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "greece"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_italy = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "italy"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
 };
