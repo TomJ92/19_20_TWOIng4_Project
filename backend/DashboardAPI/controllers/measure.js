@@ -321,11 +321,9 @@ exports.derniers = function(req, res)
   	});
   });
 };
-exports.count_type = function(req,res)
+exports.count_humidity = function(req,res)
 {
-	if(req.params.type)
-	{
-	Measure.find({type : req.params.type}).count()   
+	Measure.find({type : "humidity"}).countDocuments()   
 	.then(function(measure_count)
 	{
 		res.send({measure_count});
@@ -336,13 +334,34 @@ exports.count_type = function(req,res)
 			message: 'Error counting Measure'
 		});
 	});
-	}
-	else
+};
+exports.count_temperature = function(req,res)
+{
+	Measure.find({type : "temperature"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
 	{
 		res.send({
-			message : 'type field is empty for count_type'
+			message: 'Error counting Measure'
 		});
-	}	
+	});
+};
+exports.count_pollution = function(req,res)
+{
+	Measure.find({type : "airPollution"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
 };
 // List of all Measure ID.
 exports.list_ID = function(req, res) {
