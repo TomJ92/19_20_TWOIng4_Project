@@ -143,7 +143,7 @@ exports.create = function(req,res)
 			location : req.body.location,
 			userID : new ObjectID(req.body.userID),
 
-		}); 
+		});
 		sensor_created.save()
 		.then(function(data)
 		{
@@ -231,26 +231,26 @@ exports.update = function(req,res)
 };
 exports.delete = function(req,res)
 {
-	Sensor.findByIdAndRemove(req.body.sensorId)
+	Sensor.findByIdAndRemove(req.params.id)
 	.then(function(sensor)
 	{
 		if(sensor)
 		{
 			Measure.find({
-				sensorID : new ObjectID(req.body.sensorId)
+				sensorID : new ObjectID(req.params.id)
 			}).remove().exec()
 			.then(function(measures_removed)
-			{	
+			{
 				res.send(
 			{
-				message : 'Removed measures with sensorID' + req.body.sensorId + measures_removed
+				message : 'Removed measures with sensorID' + req.params.id + measures_removed
 			});
 			})
 			.catch(function(error)
 			{
 				res.send(
 			{
-				message : 'Error removed measures with sensorID' + req.body.sensorId + measures_removed
+				message : 'Error removed measures with sensorID' + req.params.id + measures_removed
 			});
 			});
 
@@ -259,7 +259,7 @@ exports.delete = function(req,res)
 		{
 			res.send(
 			{
-				message : 'Sensor not found with Id' + req.body.sensorId
+				message : 'Sensor not found with Id' + req.params.id
 			});
 		}
 	})
@@ -269,21 +269,21 @@ exports.delete = function(req,res)
 		{
 			res.send(
 			{
-				message : 'Sensor not found with Id' + req.body.sensorId
+				message : 'Sensor not found with Id' + req.params.id
 			});
 		}
 		else
 		{
 			res.send(
 			{
-				message : 'Error while deleting sensor with Id' + req.body.sensorId
+				message : 'Error while deleting sensor with Id' + req.params.id
 			});
 		}
 	});
 };
 exports.count = function(req,res)
 {
-	Sensor.count()   
+	Sensor.count()
 	.then(function(sensor_count)
 	{
 		if (sensor_count) {

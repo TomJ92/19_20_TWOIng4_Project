@@ -16,6 +16,6 @@ router.post('/', Sensor.update);
 
 // DELETE Delete one sensor
 
-router.delete('/', Sensor.delete);
+router.delete('/:id', Sensor.delete);
 
 module.exports = router;

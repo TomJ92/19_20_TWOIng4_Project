@@ -68,7 +68,7 @@ export default class Example extends PureComponent {
               }
             </Pie>
             <Tooltip/>
-            <Legend iconType='circle' style={{ fontSize: 10 }}/>
+            <Legend iconType='circle' style={{ fontSize: 12 }}/>
           </PieChart>
         </ResponsiveContainer>
       </div>
