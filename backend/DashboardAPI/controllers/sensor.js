@@ -355,7 +355,7 @@ exports.list_ID = function(req, res) {
 //
 exports.count_kitchen = function(req,res)
 {
-	Sensor.find({location : "kitchen"}).countDocuments()   
+	Sensor.find({location : "kitchen"}).countDocuments()
 	.then(function(measure_count)
 	{
 		res.send({measure_count});
@@ -369,7 +369,7 @@ exports.count_kitchen = function(req,res)
 };
 exports.count_livingroom = function(req,res)
 {
-	Sensor.find({location : "livingroom"}).countDocuments()   
+	Sensor.find({location : "livingroom"}).countDocuments()
 	.then(function(measure_count)
 	{
 		res.send({measure_count});
@@ -383,7 +383,7 @@ exports.count_livingroom = function(req,res)
 };
 exports.count_bedroom = function(req,res)
 {
-	Sensor.find({location : "bedroom"}).countDocuments()   
+	Sensor.find({location : "bedroom"}).countDocuments()
 	.then(function(measure_count)
 	{
 		res.send({measure_count});
@@ -397,7 +397,7 @@ exports.count_bedroom = function(req,res)
 };
 exports.count_bathroom = function(req,res)
 {
-	Sensor.find({location : "bathroom"}).countDocuments()   
+	Sensor.find({location : "bathroom"}).countDocuments()
 	.then(function(measure_count)
 	{
 		res.send({measure_count});
@@ -411,7 +411,7 @@ exports.count_bathroom = function(req,res)
 };
 exports.count_entrance = function(req,res)
 {
-	Sensor.find({location : "entrance"}).countDocuments()   
+	Sensor.find({location : "entrance"}).countDocuments()
 	.then(function(measure_count)
 	{
 		res.send({measure_count});

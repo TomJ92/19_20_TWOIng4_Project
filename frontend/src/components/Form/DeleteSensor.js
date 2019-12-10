@@ -33,7 +33,7 @@ class DeleteSensor extends React.Component {
       this.setState({
         sensorID: ""
       });
-      // window.location.reload();
+      window.location.reload();
       console.log(response.data.sensorID);
       console.log(response);
     })
