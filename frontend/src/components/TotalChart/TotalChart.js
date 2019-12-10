@@ -2,12 +2,36 @@ import React from 'react';
 import { MDBIcon } from 'mdbreact';
 import { ResponsiveContainer } from 'recharts';
 
+const axios = require('axios');
+
 export default class TabWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      totUsers: "",
+      totensor: "",
+      totMeasure: ""
     };
+  }
+
+  componentWillMount() {
+    axios.put('http://localhost:27017/users/count')
+    .then((response) => {
+      this.setState({totUsers: response});
+      console.log(response);
+    })
+
+    axios.put('http://localhost:27°17/sensors/count')
+    .then((response) => {
+      this.setState({totSensor: response});
+      console.log(response);
+    })
+
+    axios.put('http://localhost:27017/measures/count')
+    .then((response) => {
+      this.setState({totMeasure: response});
+      console.log(response);
+    })
   }
 
   render() {
