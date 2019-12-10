@@ -337,6 +337,3 @@ exports.count_type = function(req,res)
 	}
 	]);
 }
-
-
-

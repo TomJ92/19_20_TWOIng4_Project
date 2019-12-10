@@ -2,28 +2,20 @@ var express = require('express');
 var router = express.Router();
 var Sensor = require('../controllers/sensor');
 
-// GET Display all sensors
+// GET one sensor
 
-router.get('/', Sensor.displayAll);
+router.get('/', Sensor.displayOne);
 
-// GET one measure
+// PUT Create one sensor
 
-router.get('/display', Sensor.displayOne);
+router.put('/', Sensor.create);
 
-// PUT Create one measure
+// POST Update one sensor
 
-router.put('/create', Sensor.create);
+router.post('/', Sensor.update);
 
-// POST Update one measure
+// DELETE Delete one sensor
 
-router.post('/update', Sensor.update);
-
-// DELETE Delete one measure
-
-router.delete('/delete', Sensor.delete);
-
-
-
-
+router.delete('/', Sensor.delete);
 
 module.exports = router;
