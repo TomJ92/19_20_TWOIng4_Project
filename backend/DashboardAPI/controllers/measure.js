@@ -247,7 +247,7 @@ exports.delete = function(req,res)
 		{
 			res.send(
 			{
-				message : 'Measure deleted with Id' + req.body.measureId
+				message : 'Measure deleted with Id' + req.body.measureId + measure
 			});
 		}
 		else
