@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 //Variable user du model
 var User = require('../models/user');
+var Sensor = require('../models/sensor');
+var Measure = require('../models/measure');
 var mongoose = require('mongoose');
 var ObjectID = mongoose.Types.ObjectId;
 
@@ -112,10 +114,6 @@ exports.displayOne = function(req,res)
 };
 exports.create = function(req,res)
 {
-
-	console.log(req.body.location);
-	console.log(req.body.personsInHouse);
-	console.log(req.body.houSize);
 	///Tests si champs vides
 	if(!req.body.location)
 	{
@@ -233,23 +231,38 @@ exports.update = function(req,res)
 		});
 	}
 };
+
 exports.delete = function(req,res)
 {
-	User.findByIdAndRemove(req.body.userId)
+  //console.log(req.params.id);
+	User.findByIdAndRemove(req.params.id)
 	.then(function(user)
 	{
-		if(user)
-		{
-			res.send(
-			{
-				message : 'User deleted with Id' + req.body.userId
-			});
-		}
+    if(user)
+    {
+      Sensor.find({
+        userID : new ObjectID(req.params.id)
+      }).remove().exec()
+      .then(function(sensors_removed)
+      {
+        res.send(
+      {
+        message : 'Removed sensors with userID' + req.params.id + sensors_removed
+      });
+      })
+      .catch(function(error)
+      {
+        res.send(
+      {
+        message : 'Error removed sensors with userID' + req.params.id + sensors_removed
+      });
+      });
+    }
 		else
 		{
 			res.send(
 			{
-				message : 'User not found with Id' + req.body.userId
+				message : 'User not found with Id' + req.params.id
 			});
 		}
 	})
@@ -259,18 +272,19 @@ exports.delete = function(req,res)
 		{
 			res.send(
 			{
-				message : 'User not found with Id' + req.body.userId
+				message : 'User not found with Id' + req.params.id
 			});
 		}
 		else
 		{
 			res.send(
 			{
-				message : 'Error while deleting user with Id' + req.body.userId
+				message : 'Error while deleting user with Id' + req.params.id
 			});
 		}
 	});
 };
+
 exports.count = function(req,res)
 {
 	User.count()
@@ -315,4 +329,317 @@ exports.list_ID = function(req, res) {
     		message : 'Erreur de liste'
     	});
     });
+};
+exports.count_chine = function(req,res)
+{
+	User.find({location : "china"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_japon = function(req,res)
+{
+	User.find({location : "japan"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_phiphi = function(req,res)
+{
+	
+	User.find({location : "philippines"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_russie = function(req,res)
+{
+	
+	User.find({location : "russia"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_greece = function(req,res)
+{
+	
+	User.find({location : "greece"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_france = function(req,res)
+{
+	
+	User.find({location : "france"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_italy = function(req,res)
+{
+	
+	User.find({location : "italy"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_chine = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "china"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_japon = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "japan"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_phiphi = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "philippines"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_russie = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "russia"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_france = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "france"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_greece = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "greece"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
+};
+exports.count_pers_italy = function(req,res)
+{
+	User.aggregate(
+		[
+    // First Stage
+    {
+    	$match : 
+    	{
+    		location : "italy"
+    	}
+    },
+    {
+    	$group :
+    	{
+    		_id : "$location",
+    		totalPersonnes: { $sum: "$personsInHouse" } 
+    	}
+    },
+    ])   
+	.then(function(measure_count)
+	{
+		res.send(measure_count);
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting User'
+		});
+	});
 };

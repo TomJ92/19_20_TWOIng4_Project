@@ -10,7 +10,7 @@ var sensorSchema = new Schema({
   },
   location : { 
   	type : 	String,
-  	enum: ['kitchen', 'livingRoom', 'bedroom','bathroom','entrance'],
+  	enum: ['kitchen', 'livingroom', 'bedroom','bathroom','entrance'],
   	required : true,
   },
   userID : 

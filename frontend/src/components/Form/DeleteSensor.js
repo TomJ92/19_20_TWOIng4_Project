@@ -1,26 +1,26 @@
 import React from "react";
-import { MDBRow, MDBCol, MDBInput, MDBBtn, MDBIcon, MDBCard, MDBCardBody } from 'mdbreact';
+import { MDBRow, MDBCol, MDBBtn, MDBIcon, MDBCard, MDBCardBody } from 'mdbreact';
 import FormBar from '../NavBar/FormNavBar/FormBar.js';
 // import NotificationFailed from './NotificationFailed.js'
 import NotificationSucceed from './NotificationSucceed.js'
 import Alert from 'react-bootstrap/Alert'
 const axios = require('axios');
 
-class AddSensor extends React.Component {
+class DeleteSensor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userID: "",
+      sensorID: "",
       notification: false,
-      tabUsersID: []
+      tabSensorsID: []
     };
 
-    this.handleChangeUserID = this.handleChangeUserID.bind(this);
+    this.handleChangeSensorID = this.handleChangeSensorID.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangeUserID(event) {
-    this.setState({userID: event.target.value});
+  handleChangeSensorID(event) {
+    this.setState({sensorID: event.target.value});
   }
 
   handleSubmit(event) {
@@ -28,19 +28,13 @@ class AddSensor extends React.Component {
 
     event.preventDefault();
 
-    const deletedUser = {
-      userID: this.state.userID,
-    }
-
-    console.log(deletedUser);
-
-    axios.delete('http://localhost:3000/user/', deletedUser)
+    axios.delete('http://localhost:3000/sensor/' + this.state.sensorID)
     .then((response) => {
       this.setState({
-        userID: ""
+        sensorID: ""
       });
       window.location.reload();
-
+      console.log(response.data.sensorID);
       console.log(response);
     })
 
@@ -55,17 +49,17 @@ class AddSensor extends React.Component {
   }
 
   componentWillMount() {
-    axios.get('http://localhost:3000/users/')
+    axios.get('http://localhost:3000/sensors/')
 
     .then((response) => {
-      this.setState({tabUsersID: response.data});
+      this.setState({tabSensorsID: response.data});
 
-      console.log(this.state.tabUsersID);
+      console.log(this.state.tabSensorsID);
     })
   }
 
   render() {
-    let options = this.state.tabUsersID.map((data) =>
+    let options = this.state.tabSensorsID.map((data) =>
     <option key={data._id} value={data._id}>
       {data._id}
     </option>
@@ -80,14 +74,14 @@ class AddSensor extends React.Component {
             <MDBRow>
               <MDBCol>
                 <form onSubmit={ this.handleSubmit }>
-                  <p className="h4 text-center py-4">Supprimer un utilisateur et ses données</p>
+                  <p className="h4 text-center py-4">Supprimer un capteur et ses données</p>
 
                   <div className="grey-text">
 
                     <div className='d-flex flex-row pt-5'>
                       <MDBIcon size="2x" icon="user" className="pr-3"/>
-                      <select className="browser-default custom-select" value={this.state.userID} onChange={this.handleChangeUserID}>
-                        <option value="">Which one must pay !?</option>
+                      <select className="browser-default custom-select" value={this.state.sensorID} onChange={this.handleChangeSensorID}>
+                        <option value="">Which one must be destroyed !?</option>
                         { options }
                       </select>
                     </div>
@@ -114,4 +108,4 @@ class AddSensor extends React.Component {
   }
 };
 
-export default AddSensor;
+export default DeleteSensor;

@@ -38,7 +38,7 @@ export default class Widgets extends React.Component {
         </MDBRow>
 
         <MDBRow>
-          <MDBCol xs="12" md="6" xl="4">
+          <MDBCol xs="12" md="6" xl="5">
             <MDBCard className="text-center shadow-box hoverable mt-1">
               <MDBCardBody>
                 <PieChart/>
@@ -46,7 +46,7 @@ export default class Widgets extends React.Component {
             </MDBCard>
           </MDBCol>
 
-          <MDBCol xs="12" md="6" xl="4">
+          <MDBCol xs="12" md="6" xl="3">
             <MDBCard className="text-center shadow-box hoverable mt-1">
               <MDBCardBody>
                 <RadChart/>

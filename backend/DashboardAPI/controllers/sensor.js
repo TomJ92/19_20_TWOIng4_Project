@@ -143,7 +143,7 @@ exports.create = function(req,res)
 			location : req.body.location,
 			userID : new ObjectID(req.body.userID),
 
-		}); 
+		});
 		sensor_created.save()
 		.then(function(data)
 		{
@@ -231,26 +231,26 @@ exports.update = function(req,res)
 };
 exports.delete = function(req,res)
 {
-	Sensor.findByIdAndRemove(req.body.sensorId)
+	Sensor.findByIdAndRemove(req.params.id)
 	.then(function(sensor)
 	{
 		if(sensor)
 		{
 			Measure.find({
-				sensorID : new ObjectID(req.body.sensorId)
+				sensorID : new ObjectID(req.params.id)
 			}).remove().exec()
 			.then(function(measures_removed)
-			{	
+			{
 				res.send(
 			{
-				message : 'Removed measures with sensorID' + req.body.sensorId + measures_removed
+				message : 'Removed measures with sensorID' + req.params.id + measures_removed
 			});
 			})
 			.catch(function(error)
 			{
 				res.send(
 			{
-				message : 'Error removed measures with sensorID' + req.body.sensorId + measures_removed
+				message : 'Error removed measures with sensorID' + req.params.id + measures_removed
 			});
 			});
 
@@ -259,7 +259,7 @@ exports.delete = function(req,res)
 		{
 			res.send(
 			{
-				message : 'Sensor not found with Id' + req.body.sensorId
+				message : 'Sensor not found with Id' + req.params.id
 			});
 		}
 	})
@@ -269,21 +269,21 @@ exports.delete = function(req,res)
 		{
 			res.send(
 			{
-				message : 'Sensor not found with Id' + req.body.sensorId
+				message : 'Sensor not found with Id' + req.params.id
 			});
 		}
 		else
 		{
 			res.send(
 			{
-				message : 'Error while deleting sensor with Id' + req.body.sensorId
+				message : 'Error while deleting sensor with Id' + req.params.id
 			});
 		}
 	});
 };
 exports.count = function(req,res)
 {
-	Sensor.count()   
+	Sensor.count()
 	.then(function(sensor_count)
 	{
 		if (sensor_count) {
@@ -351,4 +351,75 @@ exports.list_ID = function(req, res) {
     		message : 'Erreur de liste'
     	});
     });
+};
+//
+exports.count_kitchen = function(req,res)
+{
+	Sensor.find({location : "kitchen"}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Sensor'
+		});
+	});
+};
+exports.count_livingroom = function(req,res)
+{
+	Sensor.find({location : "livingroom"}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Sensor'
+		});
+	});
+};
+exports.count_bedroom = function(req,res)
+{
+	Sensor.find({location : "bedroom"}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Sensor'
+		});
+	});
+};
+exports.count_bathroom = function(req,res)
+{
+	Sensor.find({location : "bathroom"}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Sensor'
+		});
+	});
+};
+exports.count_entrance = function(req,res)
+{
+	Sensor.find({location : "entrance"}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Sensor'
+		});
+	});
 };

@@ -16,6 +16,6 @@ router.post('/', User.update);
 
 // DELETE Delete one user
 
-router.delete('/', User.delete);
+router.delete('/:id', User.delete);
 
 module.exports = router;
