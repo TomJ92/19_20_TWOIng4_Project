@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 //Variable sensor du model
 var Sensor = require('../models/sensor');
+var Measure = require('../models/measure');
+var mongoose = require('mongoose');
+var ObjectID = mongoose.Types.ObjectId;
+
 
 // Display all Sensors.
 exports.displayAll = function(req, res) {
@@ -60,9 +64,9 @@ exports.displayOne = function(req,res)
 		if(req.body.creationDate){
 			paramsSensor.creationDate = req.body.creationDate;
 		}
-		
+
 		if(req.body.userID){
-			paramsSensor.userID = req.body.userID;
+			paramsSensor.userID = new ObjectID(req.body.userID);
 		}
 		//Recherche par champ
 		Sensor.find(paramsSensor)
@@ -137,7 +141,7 @@ exports.create = function(req,res)
 		{
 			creationDate : req.body.creationDate,
 			location : req.body.location,
-			userID : req.body.userID,
+			userID : new ObjectID(req.body.userID),
 
 		}); 
 		sensor_created.save()
@@ -172,7 +176,7 @@ exports.update = function(req,res)
 					{$set: {
 						creationDate : req.body.creationDate,
 						location : req.body.location,
-						userID : req.body.userID,
+						userID : new ObjectID(req.body.userID),
 					}},
 					{ new: true }
 					)
@@ -232,10 +236,24 @@ exports.delete = function(req,res)
 	{
 		if(sensor)
 		{
-			res.send(
+			Measure.find({
+				sensorID : new ObjectID(req.body.sensorId)
+			}).remove().exec()
+			.then(function(measures_removed)
+			{	
+				res.send(
 			{
-				message : 'Sensor deleted with Id' + req.body.sensorId
+				message : 'Removed measures with sensorID' + req.body.sensorId + measures_removed
 			});
+			})
+			.catch(function(error)
+			{
+				res.send(
+			{
+				message : 'Error removed measures with sensorID' + req.body.sensorId + measures_removed
+			});
+			});
+
 		}
 		else
 		{

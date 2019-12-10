@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 //Variable user du model
 var User = require('../models/user');
+var mongoose = require('mongoose');
+var ObjectID = mongoose.Types.ObjectId;
+
 
 // Display all Users.
 exports.displayAll = function(req, res) {
