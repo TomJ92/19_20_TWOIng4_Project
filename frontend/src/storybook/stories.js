@@ -13,10 +13,6 @@ import FormBar from '../components/NavBar/FormNavBar/FormBar.js';
 import NavBar from '../components/NavBar/SideBar/NavBar.js';
 import TopBar from '../components/NavBar/TopBar/TopNavBar.js';
 
-//////////////////////////////////////////////////////////////////////
-// Ne fonctionne pas encore, erreur qu'on comprends pas dans AreaChart
-//////////////////////////////////////////////////////////////////////
-
 storiesOf('Button', module)
   .add('with text', () => (
     <Button>Hello Button</Button>
