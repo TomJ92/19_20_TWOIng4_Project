@@ -21,8 +21,8 @@ export default class Example extends PureComponent {
   componentWillMount() {
     axios.get('http://localhost:3000/measures/count_humidity')
     .then((response) => {
-      this.setState({nbrH: response.data[0].measure_count});
-      console.log(response.data);
+      this.setState({nbrH: response.data.measure_count});
+      console.log(this.state.nbrH);
     })
     .catch(function(error)
     {
@@ -30,8 +30,8 @@ export default class Example extends PureComponent {
     });
     axios.get('http://localhost:3000/measures/count_temperature')
     .then((response) => {
-      this.setState({nbrT: response.data[0].measure_count});
-      console.log(response.data);
+      this.setState({nbrT: response.data.measure_count});
+      console.log(response.data.measure_count);
     })
     .catch(function(error)
     {
@@ -39,8 +39,8 @@ export default class Example extends PureComponent {
     });
     axios.get('http://localhost:3000/measures/count_pollution')
     .then((response) => {
-      this.setState({nbrP: response.data[0].measure_count});
-      console.log(response.data);
+      this.setState({nbrP: response.data.measure_count});
+      console.log(response.data.measure_count);
     })
     .catch(function(error)
     {
@@ -48,7 +48,7 @@ export default class Example extends PureComponent {
     });
     this.setState({data : [{name: 'Capteurs d\'humidité', value: this.state.nbrH },
   { name: 'Capteurs de température', value: this.state.nbrT },
-  { name: 'Capteurs de pollution', value: this.state.nbrP }]});
+  { name: 'Capteurs de pollution', value: this.state.nbrP}]});
 
   }
 
