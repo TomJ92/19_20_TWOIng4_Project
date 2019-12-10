@@ -46,10 +46,6 @@ export default class Example extends PureComponent {
     {
       console.log("ERROR");
     });
-    this.setState({data : [{name: 'Capteurs d\'humidité', value: this.state.nbrH },
-  { name: 'Capteurs de température', value: this.state.nbrT },
-  { name: 'Capteurs de pollution', value: this.state.nbrP}]});
-
   }
 
   render() {
@@ -59,9 +55,13 @@ export default class Example extends PureComponent {
 
         <ResponsiveContainer width='100%' height={200}>
           <PieChart onMouseEnter={this.onPieEnter}>
-            <Pie data={this.state.data} cx='50%' cy='50%' innerRadius={50} outerRadius={70} fill="#8884d8" dataKey="value">
+            <Pie data={[{name: 'Mesures d\'humidité', value: this.state.nbrH },
+  { name: 'Mesures de température', value: this.state.nbrT },
+  { name: 'Mesures de pollution', value: this.state.nbrP}]} cx='50%' cy='50%' innerRadius={40} outerRadius={60} fill="#8884d8" dataKey="value">
               {
-                this.state.data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                [{name: 'Mesures d\'humidité', value: this.state.nbrH },
+  { name: 'Mesures de température', value: this.state.nbrT },
+  { name: 'Mesures de pollution', value: this.state.nbrP}].map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
               }
             </Pie>
             <Tooltip/>
