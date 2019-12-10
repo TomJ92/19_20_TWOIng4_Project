@@ -52,7 +52,7 @@ class AddSensor extends React.Component {
     }
 
 
-    axios.put('http://localhost:27017/sensors/create', newSensor)
+    axios.put('http://localhost:3000/sensor/create', newSensor)
     .then((response) => {
 
       console.log(response);
@@ -69,11 +69,14 @@ class AddSensor extends React.Component {
   }
 
   componentWillMount() {
-    const reqIDs = axios.get('http://localhost:27017/users/list_ID');
+    axios.put('http://localhost:3000/users/list_ID')
+    
+    .then((response) => {
+      this.setState({tabUsersID: response});
 
-    this.setState({tabUsersID: reqIDs});
-
-    console.log(this.state.tabUsersID);
+      console.log(this.state.tabUsersID);
+      console.log(response);
+    })
   }
 
   render() {
