@@ -30,3 +30,5 @@ Membres projet : -Tom Jouvet
 Groupe : OCRES 4
 
 Lien Trello : https://trello.com/c/NYHzvEph/10-templates
+
+vidéo : https://www.loom.com/share/891a5fabfbe2469b84a1aa68a142e9ee
