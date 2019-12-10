@@ -2,6 +2,8 @@ import React from 'react';
 import { MDBTable, MDBTableBody, MDBTableHead, MDBIcon } from 'mdbreact';
 import { ResponsiveContainer } from 'recharts';
 
+const axios = require('axios');
+
 const data = {
   columns: [
     {
@@ -73,7 +75,7 @@ export default class TabWidget extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
 
   }
 

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 
+const axios = require('axios');
+
 const data = [
   {
     subject: 'Math', A: 120, B: 110, C: 96, fullMark: 150,
@@ -23,9 +25,14 @@ const data = [
 ];
 
 export default class RadChart extends PureComponent {
-  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/dpgb3xjq/';
+  constructor(props) {
+    super(props);
+    this.state = {
 
-  componentDidMount() {
+    };
+  }
+
+  componentWillMount() {
 
   }
 

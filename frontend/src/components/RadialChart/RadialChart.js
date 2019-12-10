@@ -2,12 +2,21 @@ import React, { PureComponent } from 'react';
 import { RadialBarChart, RadialBar, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 import { MDBIcon } from 'mdbreact';
 
+const axios = require('axios');
+
 const data = [
   { name: 'L1', value: 35 }
 ];
 
 export default class RadialChart extends PureComponent {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  componentWillMount() {
 
   }
 

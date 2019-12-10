@@ -3,6 +3,8 @@ import {
   AreaChart, Area, Legend, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 
+const axios = require('axios');
+
 const data = [
   {
     name: 'Janvier', Multimédia: 4000, Informatique: 2400, Téléphonie: 5000, amt: 2400,
@@ -25,16 +27,20 @@ const data = [
 ];
 
 export default class areaChart extends PureComponent {
-  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/tv8zfzxo/';
+  constructor(props) {
+    super(props);
+    this.state = {
 
-  componentDidMount() {
+    };
+  }
+
+  componentWillMount() {
 
   }
 
   render() {
     return (
       <div className="BarChartWidget">
-        {/* <h6 className="graph-title"> Gains mensuels </h6> */}
         <ResponsiveContainer width='100%' height={300}>
           <AreaChart data={data}
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }} label="Bonjour">
