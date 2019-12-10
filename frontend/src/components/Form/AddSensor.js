@@ -1,112 +1,121 @@
 import React from "react";
-import { MDBRow, MDBCol, MDBInput, MDBBtn, MDBIcon } from 'mdbreact';
+import { MDBRow, MDBCol, MDBInput, MDBBtn, MDBIcon, MDBCard, MDBCardBody } from 'mdbreact';
+import FormBar from '../NavBar/FormNavBar/FormBar.js';
 // import NotificationFailed from './NotificationFailed.js'
 import NotificationSucceed from './NotificationSucceed.js'
 import Alert from 'react-bootstrap/Alert'
 const axios = require('axios');
 
-class AddSensor extends React.Component {
+class AddUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      country: "",
-      numbperso: null,
-      size: "",
+      location: "",
+      personsInHouse: null,
+      houSize: "",
       notification: false
-      // submitSucceed: false,
-      // submitFailed: false
     };
 
-    this.handleChangeCountry = this.handleChangeCountry.bind(this);
+    this.handleChangelocation = this.handleChangelocation.bind(this);
     this.handleChangeNumber = this.handleChangeNumber.bind(this);
-    this.handleChangeSize = this.handleChangeSize.bind(this);
+    this.handleChangehouseSize = this.handleChangehouseSize.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangeCountry(event) {
-    this.setState({country: event.target.value});
+  handleChangelocation(event) {
+    this.setState({location: event.target.value});
   }
 
   handleChangeNumber(event) {
-    this.setState({numbperso: event.target.value});
+    this.setState({personsInHouse: event.target.value});
   }
 
-  handleChangeSize(event) {
-    this.setState({size: event.target.value});
+  handleChangehouseSize(event) {
+    this.setState({houseSize: event.target.value});
   }
 
   handleSubmit(event) {
     this.setState({notification: true});
 
-    console.log(this.state.country);
-    console.log(this.state.numbperso);
-    console.log(this.state.size);
-    console.log(this.state.notification);
+    // console.log(this.state.location);
+    // console.log(this.state.personsInHouse);
+    // console.log(this.state.houseSize);
+    // console.log(this.state.notification);
 
-    axios({
-      method: 'PUT',
-      url: 'http://localhost:27017/user/create',
-      body: [this.state.country, this.state.numbperso, this.state.size]
-    })
+    event.preventDefault();
 
+    const newUser = {
+      location: this.state.location,
+      personsInHouse: this.state.personsInHouse,
+      houseSize: this.state.houseSize,
+    }
+
+
+    axios.put('http://localhost:27017/users/create', newUser)
     .then((response) => {
 
-      console.log(response.body);
+      console.log(response);
     })
 
     .catch((error) => {
-      // this.setState({submitSucceed: true});
+
       console.log(error);
     })
   }
 
   onDismiss() {
-        this.setState({ notification: false });
-    }
+    this.setState({ notification: false });
+  }
 
   render() {
     return (
-      <MDBRow>
-        <MDBCol>
-          {/* {this.state.submitSucceed && <NotificationSucceed/>}
-          {this.state.submitFailed && <NotificationFailed/>} */}
-          <form onSubmit={ this.handleSubmit }>
-            <p className="h4 text-center py-4">Enregistrer un nouveau capteur</p>
+      <div className='d-flex flex-center mt-4'>
+        <MDBCard className='shadow-box hoverable'>
+          <FormBar/>
 
-            <div className="grey-text">
-              <p icon='user' className="h7 py-3"><MDBIcon size="2x" icon="user" className="pr-3"/>L'ID utilisateur est généré automatiquement !</p>
+          <MDBCardBody>
+            <MDBRow>
+              <MDBCol>
+                <form onSubmit={ this.handleSubmit }>
+                  <p className="h4 text-center py-4">Enregistrer un nouveau capteur</p>
 
-              <MDBInput required label="Your country" icon="thumbtack" group type="text" validate error="wrong" success="right" value={this.state.country} onChange={this.handleChangeCountry}/>
+                  <div className="grey-text">
+                    <p icon='user' className="h7 py-3"><MDBIcon size="2x" icon="user" className="pr-3"/>L'ID utilisateur est généré automatiquement !</p>
 
-              <MDBInput required label="Number of persons in the house" icon="home" group type="number" validate error="wrong" success="right" value={this.state.numbperso} onChange={this.handleChangeNumber}/>
+                    <MDBInput required label="Your country" icon="thumbtack" group type="text" validate error="wrong" success="right" value={this.state.location} onChange={this.handleChangelocation}/>
 
-              <div className='d-flex flex-row'>
-                <MDBIcon size="2x" icon="expand" className="pr-3"/>
-                <select className="browser-default custom-select" value={this.state.size} onChange={this.handleChangeSize}>
-                  <option value="">What's the size of your house ?</option>
-                  <option value="small">small</option>
-                  <option value="medium">medium</option>
-                  <option value="big">big</option>
-                </select>
-              </div>
+                    <MDBInput required label="Number of persons in the house" icon="home" group type="number" validate error="wrong" success="right" value={this.state.personsInHouse} onChange={this.handleChangeNumber}/>
 
-            </div>
-            <div className="text-center py-4 mt-3">
-              <MDBBtn className="btn btn-outline-purple" type="submit">
-                Enregistrer
-                <MDBIcon far icon="paper-plane" className="ml-2" />
-              </MDBBtn>
-            </div>
-            <div>
-              <Alert show={this.state.notification} toggle={this.onDismiss}>
-                <NotificationSucceed/>
-              </Alert>
-            </div>
-          </form>
-        </MDBCol>
-      </MDBRow>
+                    <div className='d-flex flex-row'>
+                      <MDBIcon size="2x" icon="expand" className="pr-3"/>
+                      <select className="browser-default custom-select" value={this.state.houseSize} onChange={this.handleChangehouseSize}>
+                        <option value="">What's the size of your house ?</option>
+                        <option value="small">small</option>
+                        <option value="medium">medium</option>
+                        <option value="big">big</option>
+                      </select>
+                    </div>
+
+                  </div>
+                  <div className="text-center py-4 mt-3">
+                    <MDBBtn className="btn btn-outline-purple" type="submit">
+                      Enregistrer
+                      <MDBIcon far icon="paper-plane" className="ml-2" />
+                    </MDBBtn>
+                  </div>
+                  <div>
+                    <Alert show={this.state.notification} ontoggle={this.onDismiss}>
+                      <NotificationSucceed/>
+                    </Alert>
+                  </div>
+                </form>
+              </MDBCol>
+            </MDBRow>
+          </MDBCardBody>
+        </MDBCard>
+      </div>
     );
   }
 };
 
-export default AddSensor;
+export default AddUser;
