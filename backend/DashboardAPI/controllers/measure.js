@@ -292,8 +292,8 @@ exports.count = function(req,res)
 		{
 			res.send({
 				message: 'Other error counting Measure'
-			}
-		});
+			});
+		}
 		});
 };
 exports.derniers = function(req, res)
@@ -321,7 +321,6 @@ exports.derniers = function(req, res)
   		message: 'Error last sensor'
   	});
   });
-}
 };
 exports.count_type = function(req,res)
 {
@@ -336,4 +335,19 @@ exports.count_type = function(req,res)
 		$group: { _id: "$_id", vendorCount: { $sum:1} }
 	}
 	]);
-}
+};
+// List of all Measure ID.
+exports.list_ID = function(req, res) {
+    //Renvoie tous les measures avec leurs champs ID
+    Measure.find().select('_id')
+    .then(function(measure)
+    {
+    	res.send(measure);
+    })
+    .catch(function (error)
+    {
+    	res.send({
+    		message : 'Erreur de liste'
+    	});
+    });
+};

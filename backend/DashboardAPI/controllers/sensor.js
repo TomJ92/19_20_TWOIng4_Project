@@ -282,8 +282,8 @@ exports.count = function(req,res)
 		{
 			res.send({
 				message: 'Other error counting sensor'
-			}
-		});
+			});
+		}
 		});
 };
 exports.derniers = function(req, res)
@@ -311,5 +311,19 @@ exports.derniers = function(req, res)
         message: 'Error last sensor'
       });
     });
-  }
+};
+// List of all Sensor ID.
+exports.list_ID = function(req, res) {
+    //Renvoie tous les users avec leurs champs ID
+    Sensor.find().select('_id')
+    .then(function(sensor)
+    {
+    	res.send(sensor);
+    })
+    .catch(function (error)
+    {
+    	res.send({
+    		message : 'Erreur de liste'
+    	});
+    });
 };

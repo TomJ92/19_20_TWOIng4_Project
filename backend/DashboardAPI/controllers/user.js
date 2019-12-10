@@ -287,8 +287,8 @@ exports.count = function(req,res)
 		{
 			res.send({
 				message: 'Other error counting User'
-			}
-		});
+			});
+		}
 		});
 };
 // List of all User ID.
@@ -299,7 +299,7 @@ exports.list_ID = function(req, res) {
     {
     	res.send(user);
     })
-    .catch(function (err)
+    .catch(function (error)
     {
     	res.send({
     		message : 'Erreur de liste'

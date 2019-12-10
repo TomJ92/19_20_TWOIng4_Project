@@ -14,4 +14,8 @@ router.get('/count', Sensor.count);
 
 router.get('/lasts', Sensor.derniers);
 
+// GET List of ID
+
+router.get('/list_id', Sensor.list_ID);
+
 module.exports = router;
