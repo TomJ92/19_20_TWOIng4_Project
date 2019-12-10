@@ -54,6 +54,7 @@ export default class TabWidget extends React.Component {
   render() {
     return (
       <div>
+        <h6>Dernières mesures effectuées</h6>
 
         <div className="input-group xs-form form-sm form-1 mb-1">
           <div className="input-group-prepend">
@@ -63,8 +64,6 @@ export default class TabWidget extends React.Component {
           </div>
           <input className="form-control" type="text" placeholder="Search" aria-label="Search" />
         </div>
-                    <h6>Dernières mesures effectuées</h6>
-
 
         <ResponsiveContainer width='100%'>
           <MDBTable scrollY hover >

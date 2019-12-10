@@ -1,9 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-// import Admin from './containers/Admin/Admin.js';
 import AddUser from './components/Form/AddUser.js';
 import AddSensor from './components/Form/AddSensor.js';
-// import Dashboard from './containers/DashBoard/Dashboard.js';
+import AddMeasure from './components/Form/AddMeasure.js';
 import Widgets from './containers/Widgets.js';
 import NavBar from './components/NavBar/SideBar/NavBar.js';
 import TopNavBar from './components/NavBar/TopBar/TopNavBar.js';
@@ -21,11 +20,10 @@ export default () => (
 
         <Switch>
           <Route path="/" exact component={ Widgets }/>
-          {/* <Route path="/Admin" exact component={ Admin }/> */}
           <Route path="/Admin" exact component={ AddUser }/>
           <Route path="/Admin/AddSensor" exact component={ AddSensor }/>
+          <Route path="/Admin/AddMeasure" exact component={ AddMeasure }/>
           <Route path="/Admin/Rien" exact component={ AddUser }/>
-          <Route path="/Admin/Rien2" exact component={ AddUser }/>
         </Switch>
       </MDBCol>
 

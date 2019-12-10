@@ -25,6 +25,13 @@ class NavBar extends React.Component {
               </MDBListGroupItem>
             </NavLink>
 
+            <NavLink className="text-dark font-weight-bolder p-3" to="/Admin/AddMeasure" activeClassName="activeClass">
+              <MDBListGroupItem className='item' style={{backgroundColor: 'transparent'}}>
+                <MDBIcon icon="thermometer-half" className="pr-3"/>
+                Add a Measure
+              </MDBListGroupItem>
+            </NavLink>
+
             <NavLink className="text-dark font-weight-bolder p-3" to="/Admin/Rien" activeClassName="activeClass">
               <MDBListGroupItem className='item' style={{backgroundColor: 'transparent'}}>
                 <MDBIcon far icon="file-code" className="pr-3"/>
