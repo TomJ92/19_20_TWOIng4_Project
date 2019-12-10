@@ -52,11 +52,21 @@ exports.displayOne = function(req,res)
 	//si il y a des paramètres dans body
 	else if(req.body)
 	{
-		var paramsMeasure = {
-			type : req.body.type,
-			creationDate : req.body.creationDate,
-			sensorID : req.body.sensorID,
-			value : req.body.value
+		var paramsMeasure = {};
+		if(req.body.type){
+			paramsMeasure.type = req.body.type;
+		}
+
+		if(req.body.creationDate){
+			paramsMeasure.creationDate = req.body.creationDate;
+		}
+
+		if(req.body.sensorID){
+			paramsMeasure.sensorID = req.body.sensorID;
+		}
+		if(req.body.value)
+		{
+			paramsMeasure.value=req.body.value;
 		}
 		//Recherche par champ
 		Measure.find(paramsMeasure)
@@ -271,7 +281,7 @@ exports.count = function(req,res)
 	Measure.count()   
 	.then(function(measure_count)
 	{
-			res.send({measure_count});
+		res.send({measure_count});
 	})
 	.catch(function(error)
 	{
