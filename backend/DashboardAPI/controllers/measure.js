@@ -378,3 +378,309 @@ exports.list_ID = function(req, res) {
     	});
     });
 };
+exports.humidity_january = function (req,res)
+{
+	Measure.find({
+		type : "humidity",
+		creationDate : /-01-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.humidity_february = function (req,res)
+{
+	Measure.find({
+		type : "humidity",
+		creationDate : /-02-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.humidity_march = function (req,res)
+{
+	Measure.find({
+		type : "humidity",
+		creationDate : /-03-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.humidity_april = function (req,res)
+{
+	Measure.find({
+		type : "humidity",
+		creationDate : /-04-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.humidity_may = function (req,res)
+{
+	Measure.find({
+		type : "humidity",
+		creationDate : /-05-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.humidity_june = function (req,res)
+{
+	Measure.find({
+		type : "humidity",
+		creationDate : /-06-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.temperature_january = function (req,res)
+{
+	Measure.find({
+		type : "temperature",
+		creationDate : /-01-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.temperature_february = function (req,res)
+{
+	Measure.find({
+		type : "temperature",
+		creationDate : /-02-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.temperature_march = function (req,res)
+{
+	Measure.find({
+		type : "temperature",
+		creationDate : /-03-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.temperature_april = function (req,res)
+{
+	Measure.find({
+		type : "temperature",
+		creationDate : /-04-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.temperature_may = function (req,res)
+{
+	Measure.find({
+		type : "temperature",
+		creationDate : /-05-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.temperature_june = function (req,res)
+{
+	Measure.find({
+		type : "temperature",
+		creationDate : /-06-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.pollution_january = function (req,res)
+{
+	Measure.find({
+		type : "airPollution",
+		creationDate : /-01-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.pollution_february = function (req,res)
+{
+	Measure.find({
+		type : "airPollution",
+		creationDate : /-02-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.pollution_march = function (req,res)
+{
+	Measure.find({
+		type : "airPollution",
+		creationDate : /-03-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.pollution_april = function (req,res)
+{
+	Measure.find({
+		type : "airPollution",
+		creationDate : /-04-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.pollution_may = function (req,res)
+{
+	Measure.find({
+		type : "airPollution",
+		creationDate : /-05-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
+exports.pollution_june = function (req,res)
+{
+	Measure.find({
+		type : "airPollution",
+		creationDate : /-06-/i
+	}).countDocuments()
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
+}
