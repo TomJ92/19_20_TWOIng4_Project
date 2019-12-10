@@ -90,7 +90,7 @@ export default class TabWidget extends React.Component {
           <input className="form-control" type="text" placeholder="Search" aria-label="Search" />
         </div>
 
-        <ResponsiveContainer width='100%' height='auto'>
+        <ResponsiveContainer width='100%'>
           <MDBTable scrollY hover>
             <MDBTableHead columns={data.columns} />
             <MDBTableBody rows={data.rows} />

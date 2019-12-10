@@ -14,9 +14,9 @@ export default class RadialChart extends PureComponent {
   render() {
     return (
       <div>
-        <h7>Budget total </h7> <span> 500 000€ </span>
+        <h6>Budget total </h6> <span> 500 000€ </span>
 
-        <ResponsiveContainer width='100%' height={150}>
+        <ResponsiveContainer width='100%'>
           <div className='d-flex flex-column'>
             <div className='d-flex justify-content-center'>
               <RadialBarChart width={250} height={150} cx='50%' cy='50%' innerRadius={60} outerRadius={50} barSize={20} data={data} startAngle={90} endAngle={-270}>
