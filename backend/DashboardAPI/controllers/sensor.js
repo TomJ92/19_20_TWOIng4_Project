@@ -259,7 +259,7 @@ exports.delete = function(req,res)
 exports.count = function(req,res)
 {
 	Sensor.count()   
-	.then(function()
+	.then(function(sensor_count)
 	{
 		if (sensor_count) {
 			res.send({sensor_count});
@@ -282,15 +282,15 @@ exports.count = function(req,res)
 		{
 			res.send({
 				message: 'Other error counting sensor'
-			}
-		});
+			});
+		}
 		});
 };
 exports.derniers = function(req, res)
 {
 
   //Trouve et classe tous les capteurs par date de creation
-    Sensor.find().sort({ creationDate: -1 })
+    Sensor.find().sort({ creationDate: -1 }).limit(6)
     .then(function(sensors)
     {
     	if(sensors)
@@ -311,5 +311,19 @@ exports.derniers = function(req, res)
         message: 'Error last sensor'
       });
     });
-  }
+};
+// List of all Sensor ID.
+exports.list_ID = function(req, res) {
+    //Renvoie tous les users avec leurs champs ID
+    Sensor.find().select('_id')
+    .then(function(sensor)
+    {
+    	res.send(sensor);
+    })
+    .catch(function (error)
+    {
+    	res.send({
+    		message : 'Erreur de liste'
+    	});
+    });
 };

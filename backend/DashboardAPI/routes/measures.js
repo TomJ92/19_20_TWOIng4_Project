@@ -18,6 +18,9 @@ router.get('/lasts', Measure.derniers);
 
 router.get('/count_type', Measure.count_type);
 
+// GET List of ID
+
+router.get('/list_id', Measure.list_ID);
 
 
 

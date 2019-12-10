@@ -7,11 +7,11 @@ var Measure = require('../models/measure');
 exports.displayAll = function(req, res) {
     //Measure query
     Measure.find()
-    .then(function(sensor)
+    .then(function(measure)
     {
-    	res.send(sensor);
+    	res.send(measure);
     })
-    .catch(function (err)
+    .catch(function (error)
     {
     	res.send({
     		message : 'Erreur de liste'
@@ -271,36 +271,20 @@ exports.count = function(req,res)
 	Measure.count()   
 	.then(function(measure_count)
 	{
-		if (measure_count) {
 			res.send({measure_count});
-		}
-		else
-		{
-			res.send({
-				message: 'Error counting Measure'
-			});
-		}
 	})
 	.catch(function(error)
 	{
-		if (error.kind === 'ObjectId') {
-			res.send({
-				message: 'Erreur counting Measure'
-			});
-		}
-		else
-		{
-			res.send({
-				message: 'Other error counting Measure'
-			}
+		res.send({
+			message: 'Error counting Measure'
 		});
-		});
+	});
 };
 exports.derniers = function(req, res)
 {
 
   //Trouve et classe tous les capteurs par date de creation
-  Measure.find().sort({ creationDate: -1 })
+  Measure.find().sort({ creationDate: -1 }).limit(6)
   .then(function(measures)
   {
   	if(measures)
@@ -321,7 +305,6 @@ exports.derniers = function(req, res)
   		message: 'Error last sensor'
   	});
   });
-}
 };
 exports.count_type = function(req,res)
 {
@@ -336,4 +319,19 @@ exports.count_type = function(req,res)
 		$group: { _id: "$_id", vendorCount: { $sum:1} }
 	}
 	]);
-}
+};
+// List of all Measure ID.
+exports.list_ID = function(req, res) {
+    //Renvoie tous les measures avec leurs champs ID
+    Measure.find().select('_id')
+    .then(function(measure)
+    {
+    	res.send(measure);
+    })
+    .catch(function (error)
+    {
+    	res.send({
+    		message : 'Erreur de liste'
+    	});
+    });
+};

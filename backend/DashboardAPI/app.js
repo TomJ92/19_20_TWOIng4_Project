@@ -27,9 +27,12 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/user');
-var sensorsRouter = require('./routes/sensor');
-var measuresRouter = require('./routes/measure');
+var userRouter = require('./routes/user');
+var sensorRouter = require('./routes/sensor');
+var measureRouter = require('./routes/measure');
+var usersRouter = require('./routes/users');
+var sensorsRouter = require('./routes/sensors');
+var measuresRouter = require('./routes/measures');
 
 var app = express();
 
@@ -49,6 +52,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use("/user", userRouter);
+app.use("/measure", measureRouter);
+app.use("/sensor", sensorRouter);
 app.use("/users", usersRouter);
 app.use("/measures", measuresRouter);
 app.use("/sensors", sensorsRouter);

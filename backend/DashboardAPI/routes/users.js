@@ -10,12 +10,8 @@ router.get('/', User.displayAll);
 
 router.get('/count', User.count);
 
-// GET Dernières instances
+// GET List of ID
 
-router.get('/lasts', User.derniers);
-
-// GET Number of instances per type
-
-router.get('/count_type', User.count_type);
+router.get('/list_id', User.list_ID);
 
 module.exports = router;

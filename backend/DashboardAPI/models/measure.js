@@ -24,4 +24,4 @@ var measureSchema = new Schema({
   	required : true,
   }
 });
-module.exports  = mongoose.model('Measure', measureSchema);
+module.exports  = mongoose.model('Measure', measureSchema, 'Measure');
