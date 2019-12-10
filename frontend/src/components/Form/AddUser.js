@@ -103,11 +103,11 @@ class AddUser extends React.Component {
                       <MDBIcon far icon="paper-plane" className="ml-2" />
                     </MDBBtn>
                   </div>
-                  <div>
-                    <Alert show={this.state.notification} ontoggle={this.onDismiss}>
-                      <NotificationSucceed/>
-                    </Alert>
-                  </div>
+
+                  <Alert show={this.state.notification} ontoggle={this.onDismiss}>
+                    <NotificationSucceed/>
+                  </Alert>
+
                 </form>
               </MDBCol>
             </MDBRow>
