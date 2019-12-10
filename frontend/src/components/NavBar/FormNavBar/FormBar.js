@@ -32,10 +32,10 @@ class NavBar extends React.Component {
               </MDBListGroupItem>
             </NavLink>
 
-            <NavLink className="text-dark font-weight-bolder p-3" to="/Admin/Rien" activeClassName="activeClass">
+            <NavLink className="text-dark font-weight-bolder p-3" to="/Admin/DeleteUser" activeClassName="activeClass">
               <MDBListGroupItem className='item' style={{backgroundColor: 'transparent'}}>
-                <MDBIcon far icon="file-code" className="pr-3"/>
-                In development ...
+                <MDBIcon icon="user-times" className="pr-3"/>
+                Delete a User
               </MDBListGroupItem>
             </NavLink>
 
