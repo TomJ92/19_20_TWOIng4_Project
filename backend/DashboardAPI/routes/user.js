@@ -1,27 +1,21 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../controllers/user.js');
+var User = require('../controllers/user');
 
-// GET Display all users
+// GET one user
 
-router.get('/', User.displayAll);
+router.get('/', User.displayOne);
 
-// GET one measure
+// PUT Create one user
 
-router.get('/display', User.displayOne);
+router.put('/', User.create);
 
-// PUT Create one measure
+// POST Update one user
 
-router.put('/create', User.create);
+router.post('/', User.update);
 
-// POST Update one measure
+// DELETE Delete one user
 
-router.post('/update', User.update);
-
-// DELETE Delete one measure
-
-router.delete('/delete', User.delete);
-
-
+router.delete('/', User.delete);
 
 module.exports = router;

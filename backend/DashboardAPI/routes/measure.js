@@ -2,28 +2,20 @@ var express = require('express');
 var router = express.Router();
 var Measure = require('../controllers/measure');
 
-// GET Display all measures
-
-router.get('/', Measure.displayAll);
-
 // GET one measure
 
-router.get('/display', Measure.displayOne);
+router.get('/', Measure.displayOne);
 
 // PUT Create one measure
 
-router.put('/create', Measure.create);
+router.put('/', Measure.create);
 
 // POST Update one measure
 
-router.post('/update', Measure.update);
+router.post('/', Measure.update);
 
 // DELETE Delete one measure
 
-router.delete('/delete', Measure.delete);
-
-
-
-
+router.delete('/', Measure.delete);
 
 module.exports = router;
