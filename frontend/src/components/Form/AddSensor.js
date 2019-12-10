@@ -18,7 +18,7 @@ class AddSensor extends React.Component {
     };
 
     this.handleChangeCreationDate = this.handleChangeCreationDate.bind(this);
-    this.handleChangeLocation = this.handleChangeLocation.bind(this);
+    this.handleChangelocation = this.handleChangelocation.bind(this);
     this.handleChangeUserID = this.handleChangeUserID.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,7 +27,7 @@ class AddSensor extends React.Component {
     this.setState({creationDate: event.target.value});
   }
 
-  handleChangeLocation(event) {
+  handleChangelocation(event) {
     this.setState({location: event.target.value});
   }
 
@@ -51,9 +51,16 @@ class AddSensor extends React.Component {
       userID: this.state.userID,
     }
 
+    console.log(newSensor);
 
-    axios.put('http://localhost:3000/sensor/create', newSensor)
+    axios.put('http://localhost:3000/sensor/', newSensor)
     .then((response) => {
+      this.setState({
+        location: "",
+        creationDate: null,
+        userID: ""
+      });
+      window.location.reload();
 
       console.log(response);
     })
@@ -69,22 +76,21 @@ class AddSensor extends React.Component {
   }
 
   componentWillMount() {
-    axios.put('http://localhost:3000/users/list_ID')
-    
+    axios.get('http://localhost:3000/users/')
+
     .then((response) => {
-      this.setState({tabUsersID: response});
+      this.setState({tabUsersID: response.data});
 
       console.log(this.state.tabUsersID);
-      console.log(response);
     })
   }
 
   render() {
-    // let options = this.state.tabUsersID.map((data) =>
-    // <option key={data._id} value={data._id}>
-    //   {data._id}
-    // </option>
-    // );
+    let options = this.state.tabUsersID.map((data) =>
+    <option key={data._id} value={data._id}>
+      {data._id}
+    </option>
+    );
 
     return (
       <div className='d-flex flex-center mt-4'>
@@ -117,7 +123,7 @@ class AddSensor extends React.Component {
                       <MDBIcon size="2x" icon="user" className="pr-3"/>
                       <select className="browser-default custom-select" value={this.state.userID} onChange={this.handleChangeUserID}>
                         <option value="">To which user does it belong ?</option>
-                        {/* { options } */}
+                        { options }
                       </select>
                     </div>
 
