@@ -18,17 +18,17 @@ class NavBar extends React.Component {
               </MDBListGroupItem>
             </NavLink>
 
-            <NavLink className="text-dark font-weight-bolder p-3" to="/Admin/Rien" activeClassName="activeClass">
+            <NavLink className="text-dark font-weight-bolder p-3" to="/Admin/AddSensor" activeClassName="activeClass">
               <MDBListGroupItem className='item' style={{backgroundColor: 'transparent'}}>
-                <MDBIcon icon="user" className="pr-3"/>
-                Nothing For Now
+                <MDBIcon icon="broadcast-tower" className="pr-3"/>
+                Add a Sensor
               </MDBListGroupItem>
             </NavLink>
 
-            <NavLink className="text-dark font-weight-bolder p-3" to="/Admin/Rien2" activeClassName="activeClass">
+            <NavLink className="text-dark font-weight-bolder p-3" to="/Admin/Rien" activeClassName="activeClass">
               <MDBListGroupItem className='item' style={{backgroundColor: 'transparent'}}>
-                <MDBIcon icon="user" className="pr-3"/>
-                Nothing For Now
+                <MDBIcon far icon="file-code" className="pr-3"/>
+                In development ...
               </MDBListGroupItem>
             </NavLink>
 

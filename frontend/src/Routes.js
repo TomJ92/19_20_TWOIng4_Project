@@ -16,11 +16,11 @@ export default () => (
 
       <MDBCol xs='12' xl='10'>
         <TopNavBar className='d-xs-block d-xl-none'/>
-
-        <Switch>
-          <Route path="/" exact component={ Widgets }/>
-          <Route path="/Admin" exact component={ Admin }/>
-        </Switch>
+        
+          <Switch>
+            <Route path="/" exact component={ Widgets }/>
+            <Route path="/Admin" exact component={ Admin }/>
+          </Switch>
       </MDBCol>
 
     </MDBRow>
