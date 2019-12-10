@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 //Variable measure du model
 var Measure = require('../models/measure');
+var mongoose = require('mongoose');
+var ObjectID = mongoose.Types.ObjectId;
 
 // Display all Measures.
 exports.displayAll = function(req, res) {
@@ -62,7 +64,7 @@ exports.displayOne = function(req,res)
 		}
 
 		if(req.body.sensorID){
-			paramsMeasure.sensorID = req.body.sensorID;
+			paramsMeasure.sensorID = new ObjectID(req.body.sensorID);
 		}
 		if(req.body.value)
 		{
@@ -74,7 +76,10 @@ exports.displayOne = function(req,res)
 		{
 			if(measure)
 			{
-				res.send(measure);
+				res.send(
+					{
+						message : measure
+					});
 			}
 			else
 			{
@@ -148,7 +153,7 @@ exports.create = function(req,res)
 		{
 			type : req.body.type,
 			creationDate: req.body.creationDate,
-			sensorID:req.body.sensorID,
+			sensorID: new ObjectID(req.body.sensorID),
 			value:req.body.value
 
 		}); 
@@ -184,7 +189,7 @@ exports.update = function(req,res)
 					{$set: {
 						creationDate: req.body.creationDate,
 						value: req.body.value,
-						sensorID: req.body.sensorID,
+						sensorID: new ObjectID(req.body.sensorID),
 						type: req.body.type
 					}},
 					{ new: true }

@@ -15,7 +15,7 @@ var measureSchema = new Schema({
   },
   sensorID : 
   {
-  	type : String,
+  	type : ObjectID,
   	required : true,
   },
   value : 
