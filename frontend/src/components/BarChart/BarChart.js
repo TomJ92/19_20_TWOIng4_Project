@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { ResponsiveContainer } from 'recharts';
 
+const axios = require('axios');
+
 export default class BarChart extends Component {
   constructor(props){
     super(props);
@@ -48,7 +50,7 @@ export default class BarChart extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
 
   }
 

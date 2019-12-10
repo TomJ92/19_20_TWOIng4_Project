@@ -13,7 +13,8 @@ class AddSensor extends React.Component {
       creationDate: "",
       location: "",
       userID: "",
-      notification: false
+      notification: false,
+      tabUsersID: []
     };
 
     this.handleChangeCreationDate = this.handleChangeCreationDate.bind(this);
@@ -67,7 +68,21 @@ class AddSensor extends React.Component {
     this.setState({ notification: false });
   }
 
+  componentWillMount() {
+    const reqIDs = axios.get('http://localhost:27017/users/list_ID');
+
+    this.setState({tabUsersID: reqIDs});
+
+    console.log(this.state.tabUsersID);
+  }
+
   render() {
+    // let options = this.state.tabUsersID.map((data) =>
+    // <option key={data._id} value={data._id}>
+    //   {data._id}
+    // </option>
+    // );
+
     return (
       <div className='d-flex flex-center mt-4'>
         <MDBCard className='shadow-box hoverable'>
@@ -99,9 +114,7 @@ class AddSensor extends React.Component {
                       <MDBIcon size="2x" icon="user" className="pr-3"/>
                       <select className="browser-default custom-select" value={this.state.userID} onChange={this.handleChangeUserID}>
                         <option value="">To which user does it belong ?</option>
-                        <option value="small">small</option>
-                        <option value="medium">medium</option>
-                        <option value="big">big</option>
+                        {/* { options } */}
                       </select>
                     </div>
 

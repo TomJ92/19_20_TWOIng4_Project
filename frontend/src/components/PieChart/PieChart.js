@@ -3,6 +3,8 @@ import {
   PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer
 } from 'recharts';
 
+const axios = require('axios');
+
 const data = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
@@ -13,7 +15,16 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 
 export default class Example extends PureComponent {
-  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/3Leoa7f4/';
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  componentWillMount() {
+
+  }
 
   render() {
     return (

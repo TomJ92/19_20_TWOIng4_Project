@@ -12,7 +12,7 @@ class AddUser extends React.Component {
     this.state = {
       location: "",
       personsInHouse: null,
-      houSize: "",
+      houseSize: "",
       notification: false
     };
 
