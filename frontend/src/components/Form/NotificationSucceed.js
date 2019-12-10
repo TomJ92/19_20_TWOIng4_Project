@@ -5,7 +5,7 @@ class Notification extends Component {
   render() {
     return (
       <MDBNotification
-        autohide={3000} // by default = ∞ ms
+        autohide={5000} // by default = ∞ ms
         style={{
           position: "fixed",
           top: "10px",
@@ -18,10 +18,10 @@ class Notification extends Component {
         fade
         icon="bell"
         iconClassName="blue-grey-text"
-        message="Hello, world! This is a toast message."
+        message="Votre requête a fonctionné !"
         show
-        text="11 mins ago"
-        title="Bootstrap"
+        text="à l'instant"
+        title="Félicitation !"
         titleClassName="elegant-color-dark white-text"
       />
     );

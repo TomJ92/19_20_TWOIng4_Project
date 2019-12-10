@@ -102,6 +102,10 @@ exports.displayOne = function(req,res)
 };
 exports.create = function(req,res)
 {
+
+  console.log(req.body.location);
+  console.log(req.body.personsInHouse);
+  console.log(req.body.houSize);
 	///Tests si champs vides
 	if(!req.body.location)
 	{
@@ -131,18 +135,18 @@ exports.create = function(req,res)
 		{
 			location : req.body.location,
 			personsInHouse : req.body.personsInHouse,
-			houseSize : req.body.houseSize,
+			houseSize : req.body.houseSize
 
-		}); 
+		});
 		user_created.save()
-		.then(function(data)
+		.then((data) =>
 		{
 			res.send(
 			{
 				message : 'Added new user' + data
 			});
 		})
-		.catch(function(error)
+		.catch((error) =>
 		{
 			res.send(
 			{
@@ -259,7 +263,7 @@ exports.delete = function(req,res)
 };
 exports.count = function(req,res)
 {
-	User.count()   
+	User.count()
 	.then(function(user_count)
 	{
 		if (user_count) {

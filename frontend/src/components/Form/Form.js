@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import AddUser from './AddUser.js';
+import AddSensor from './AddSensor.js';
 import FormBar from '../NavBar/FormNavBar/FormBar.js';
 import { MDBCard, MDBCardBody } from 'mdbreact';
 
@@ -12,8 +13,8 @@ export default () => (
       <MDBCardBody>
         <Switch>
           <Route path="/Admin" exact component={ AddUser }/>
-          <Route path="/Admin/Rien" exact />
-          <Route path="/Admin/Rien2" exact />
+          <Route path="/Admin/AddSensor" exact component={ AddSensor }/>
+          <Route path="/Admin/Rien" exact component={ AddUser }/>
         </Switch>
       </MDBCardBody>
     </MDBCard>
