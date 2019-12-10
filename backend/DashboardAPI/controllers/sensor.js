@@ -52,10 +52,17 @@ exports.displayOne = function(req,res)
 	//si il y a des paramètres dans body
 	else if(req.body)
 	{
-		var paramsSensor = {
-			creationDate : req.body.creationDate,
-			location : req.body.location,
-			userID : req.body.userID,
+		var paramsSensor = {};
+		if(req.body.location){
+			paramsSensor.location = req.body.location;
+		}
+
+		if(req.body.creationDate){
+			paramsSensor.creationDate = req.body.creationDate;
+		}
+		
+		if(req.body.userID){
+			paramsSensor.userID = req.body.userID;
 		}
 		//Recherche par champ
 		Sensor.find(paramsSensor)
@@ -91,13 +98,13 @@ exports.displayOne = function(req,res)
 			}
 		});
 	}
-		else
+	else
+	{
+		res.send(
 		{
-			res.send(
-			{
-				message : 'No parameters found'
-			});
-		}
+			message : 'No parameters found'
+		});
+	}
 };
 exports.create = function(req,res)
 {
@@ -284,33 +291,33 @@ exports.count = function(req,res)
 				message: 'Other error counting sensor'
 			});
 		}
-		});
+	});
 };
 exports.derniers = function(req, res)
 {
 
   //Trouve et classe tous les capteurs par date de creation
-    Sensor.find().sort({ creationDate: -1 }).limit(6)
-    .then(function(sensors)
-    {
-    	if(sensors)
-    	{
+  Sensor.find().sort({ creationDate: -1 }).limit(6)
+  .then(function(sensors)
+  {
+  	if(sensors)
+  	{
     		//On pourra sélectionner directement les 6 premiers (les plus récents)
     		res.send(sensors);
     	}
-      else
-      {
-        res.send({
-          message: 'No sensors found '
-        });
-      }
+    	else
+    	{
+    		res.send({
+    			message: 'No sensors found '
+    		});
+    	}
     })
-    .catch(function(err)
-    {
-      res.send({
-        message: 'Error last sensor'
-      });
-    });
+  .catch(function(err)
+  {
+  	res.send({
+  		message: 'Error last sensor'
+  	});
+  });
 };
 // List of all Sensor ID.
 exports.list_ID = function(req, res) {

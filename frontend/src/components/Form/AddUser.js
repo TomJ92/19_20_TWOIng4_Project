@@ -51,7 +51,7 @@ class AddUser extends React.Component {
     }
 
 
-    axios.put('http://localhost:27017/users/create', newUser)
+    axios.put('http://localhost:3000/user/create', newUser)
     .then((response) => {
 
       console.log(response);

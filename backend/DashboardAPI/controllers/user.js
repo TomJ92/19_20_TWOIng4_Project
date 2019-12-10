@@ -52,10 +52,17 @@ exports.displayOne = function(req,res)
 	//si il y a des paramètres dans body
 	else if(req.body)
 	{
-		var paramsUser = {
-			location : req.body.location,
-			personsInHouse : req.body.personsInHouse,
-			houseSize : req.body.houseSize,
+		var paramsUser = {};
+		if(req.body.location){
+			paramsUser.location = req.body.location;
+		}
+
+		if(req.body.personsInHouse){
+			paramsUser.personsInHouse = req.body.personsInHouse;
+		}
+
+		if(req.body.houseSize){
+			paramsUser.houseSize = req.body.houseSize;
 		}
 		//Recherche par champ
 		User.find(paramsUser)
@@ -103,9 +110,9 @@ exports.displayOne = function(req,res)
 exports.create = function(req,res)
 {
 
-  console.log(req.body.location);
-  console.log(req.body.personsInHouse);
-  console.log(req.body.houSize);
+	console.log(req.body.location);
+	console.log(req.body.personsInHouse);
+	console.log(req.body.houSize);
 	///Tests si champs vides
 	if(!req.body.location)
 	{
@@ -289,7 +296,7 @@ exports.count = function(req,res)
 				message: 'Other error counting User'
 			});
 		}
-		});
+	});
 };
 // List of all User ID.
 exports.list_ID = function(req, res) {

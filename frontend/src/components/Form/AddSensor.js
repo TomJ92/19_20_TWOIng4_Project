@@ -52,7 +52,7 @@ class AddSensor extends React.Component {
     }
 
 
-    axios.put('http://localhost:27017/sensors/create', newSensor)
+    axios.put('http://localhost:3000/sensor/create', newSensor)
     .then((response) => {
 
       console.log(response);
