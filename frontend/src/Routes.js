@@ -25,6 +25,7 @@ export default () => (
           <Route path="/Admin" exact component={ AddUser }/>
           <Route path="/Admin/AddSensor" exact component={ AddSensor }/>
           <Route path="/Admin/Rien" exact component={ AddUser }/>
+          <Route path="/Admin/Rien2" exact component={ AddUser }/>
         </Switch>
       </MDBCol>
 

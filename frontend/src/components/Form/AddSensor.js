@@ -6,52 +6,52 @@ import NotificationSucceed from './NotificationSucceed.js'
 import Alert from 'react-bootstrap/Alert'
 const axios = require('axios');
 
-class AddUser extends React.Component {
+class AddSensor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      creationDate: "",
       location: "",
-      personsInHouse: null,
-      houSize: "",
+      userID: "",
       notification: false
     };
 
-    this.handleChangelocation = this.handleChangelocation.bind(this);
-    this.handleChangeNumber = this.handleChangeNumber.bind(this);
-    this.handleChangehouseSize = this.handleChangehouseSize.bind(this);
+    this.handleChangeCreationDate = this.handleChangeCreationDate.bind(this);
+    this.handleChangeLocation = this.handleChangeLocation.bind(this);
+    this.handleChangeUserID = this.handleChangeUserID.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangelocation(event) {
+  handleChangeCreationDate(event) {
+    this.setState({creationDate: event.target.value});
+  }
+
+  handleChangeLocation(event) {
     this.setState({location: event.target.value});
   }
 
-  handleChangeNumber(event) {
-    this.setState({personsInHouse: event.target.value});
-  }
-
-  handleChangehouseSize(event) {
-    this.setState({houseSize: event.target.value});
+  handleChangeUserID(event) {
+    this.setState({userID: event.target.value});
   }
 
   handleSubmit(event) {
     this.setState({notification: true});
 
-    // console.log(this.state.location);
-    // console.log(this.state.personsInHouse);
-    // console.log(this.state.houseSize);
-    // console.log(this.state.notification);
+    console.log(this.state.creationDate);
+    console.log(this.state.location);
+    console.log(this.state.userID);
+    console.log(this.state.notification);
 
     event.preventDefault();
 
-    const newUser = {
+    const newSensor = {
+      creationDate: this.state.creationDate,
       location: this.state.location,
-      personsInHouse: this.state.personsInHouse,
-      houseSize: this.state.houseSize,
+      userID: this.state.userID,
     }
 
 
-    axios.put('http://localhost:27017/users/create', newUser)
+    axios.put('http://localhost:27017/sensors/create', newSensor)
     .then((response) => {
 
       console.log(response);
@@ -80,16 +80,25 @@ class AddUser extends React.Component {
                   <p className="h4 text-center py-4">Enregistrer un nouveau capteur</p>
 
                   <div className="grey-text">
-                    <p icon='user' className="h7 py-3"><MDBIcon size="2x" icon="user" className="pr-3"/>L'ID utilisateur est généré automatiquement !</p>
+                    <p className="h7"><MDBIcon size="2x" far icon="calendar-alt" className="pr-3"/>Date de création du capteur</p>
+                    <MDBInput required type="date" value={this.state.creationDate} onChange={this.handleChangeCreationDate}/>
 
-                    <MDBInput required label="Your country" icon="thumbtack" group type="text" validate error="wrong" success="right" value={this.state.location} onChange={this.handleChangelocation}/>
+                    <div className='d-flex flex-row pt-4'>
+                      <MDBIcon size="2x" icon="thumbtack" className="pr-3"/>
+                      <select className="browser-default custom-select" value={this.state.location} onChange={this.handleChangelocation}>
+                        <option value="">In which room is the sensor ?</option>
+                        <option value="kitchen">Bryan is in the KITCHEN</option>
+                        <option value="livingRoom">Living room</option>
+                        <option value="bedroom">Bedroom</option>
+                        <option value="bathroom">Bathroom</option>
+                        <option value="entrance">Entrance</option>
+                      </select>
+                    </div>
 
-                    <MDBInput required label="Number of persons in the house" icon="home" group type="number" validate error="wrong" success="right" value={this.state.personsInHouse} onChange={this.handleChangeNumber}/>
-
-                    <div className='d-flex flex-row'>
-                      <MDBIcon size="2x" icon="expand" className="pr-3"/>
-                      <select className="browser-default custom-select" value={this.state.houseSize} onChange={this.handleChangehouseSize}>
-                        <option value="">What's the size of your house ?</option>
+                    <div className='d-flex flex-row pt-5'>
+                      <MDBIcon size="2x" icon="user" className="pr-3"/>
+                      <select className="browser-default custom-select" value={this.state.userID} onChange={this.handleChangeUserID}>
+                        <option value="">To which user does it belong ?</option>
                         <option value="small">small</option>
                         <option value="medium">medium</option>
                         <option value="big">big</option>
@@ -118,4 +127,4 @@ class AddUser extends React.Component {
   }
 };
 
-export default AddUser;
+export default AddSensor;
