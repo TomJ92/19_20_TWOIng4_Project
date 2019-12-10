@@ -6,20 +6,22 @@ import NotificationSucceed from './NotificationSucceed.js'
 import Alert from 'react-bootstrap/Alert'
 const axios = require('axios');
 
-class AddSensor extends React.Component {
+class AddMeasure extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      type: "",
       creationDate: "",
-      location: "",
-      userID: "",
+      sensorID: "",
+      value: null,
       notification: false,
-      tabUsersID: []
+      tabSensorsID: []
     };
 
     this.handleChangeCreationDate = this.handleChangeCreationDate.bind(this);
-    this.handleChangelocation = this.handleChangelocation.bind(this);
-    this.handleChangeUserID = this.handleChangeUserID.bind(this);
+    this.handleChangeType = this.handleChangeType.bind(this);
+    this.handleChangeSensorID = this.handleChangeSensorID.bind(this);
+    this.handleChangeValue = this.handleChangeValue.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -27,38 +29,39 @@ class AddSensor extends React.Component {
     this.setState({creationDate: event.target.value});
   }
 
-  handleChangelocation(event) {
-    this.setState({location: event.target.value});
+  handleChangeType(event) {
+    this.setState({type: event.target.value});
   }
 
-  handleChangeUserID(event) {
-    this.setState({userID: event.target.value});
+  handleChangeSensorID(event) {
+    this.setState({sensorID: event.target.value});
+  }
+
+  handleChangeValue(event) {
+    this.setState({value: event.target.value});
   }
 
   handleSubmit(event) {
     this.setState({notification: true});
 
-    console.log(this.state.creationDate);
-    console.log(this.state.location);
-    console.log(this.state.userID);
-    console.log(this.state.notification);
-
     event.preventDefault();
 
-    const newSensor = {
+    const newMeasure = {
       creationDate: this.state.creationDate,
-      location: this.state.location,
-      userID: this.state.userID,
+      type: this.state.type,
+      sensorID: this.state.sensorID,
+      value: this.state.value
     }
 
-    console.log(newSensor);
+    console.log(newMeasure);
 
-    axios.put('http://localhost:3000/sensor/', newSensor)
+    axios.put('http://localhost:3000/measure/', newMeasure)
     .then((response) => {
       this.setState({
-        location: "",
+        type: "",
         creationDate: "",
-        userID: ""
+        sensorID: "",
+        value: null
       });
       window.location.reload();
 
@@ -76,17 +79,17 @@ class AddSensor extends React.Component {
   }
 
   componentWillMount() {
-    axios.get('http://localhost:3000/users/')
+    axios.get('http://localhost:3000/sensors/')
 
     .then((response) => {
-      this.setState({tabUsersID: response.data});
+      this.setState({tabSensorsID: response.data});
 
-      console.log(this.state.tabUsersID);
+      console.log(this.state.tabSensorsID);
     })
   }
 
   render() {
-    let options = this.state.tabUsersID.map((data) =>
+    let options = this.state.tabSensorsID.map((data) =>
     <option key={data._id} value={data._id}>
       {data._id}
     </option>
@@ -101,34 +104,34 @@ class AddSensor extends React.Component {
             <MDBRow>
               <MDBCol>
                 <form onSubmit={ this.handleSubmit }>
-                  <p className="h4 text-center py-4">Enregistrer un nouveau capteur</p>
+                  <p className="h4 text-center py-3">Enregistrer une nouvelle mesure</p>
 
                   <div className="grey-text">
-                    <p className="h7"><MDBIcon size="2x" far icon="calendar-alt" className="pr-3"/>Date de création du capteur</p>
-                    <MDBInput required type="date" value={this.state.creationDate} onChange={this.handleChangeCreationDate}/>
-
                     <div className='d-flex flex-row pt-4'>
-                      <MDBIcon size="2x" icon="thumbtack" className="pr-3"/>
-                      <select className="browser-default custom-select" value={this.state.location} onChange={this.handleChangelocation}>
-                        <option value="">In which room is the sensor ?</option>
-                        <option value="kitchen">Bryan is in the KITCHEN</option>
-                        <option value="livingRoom">Living room</option>
-                        <option value="bedroom">Bedroom</option>
-                        <option value="bathroom">Bathroom</option>
-                        <option value="entrance">Entrance</option>
+                      <MDBIcon size="2x" icon="thermometer-half" className="pr-3"/>
+                      <select className="browser-default custom-select" value={this.state.type} onChange={this.handleChangeType}>
+                        <option value="">What type of measure is it ?</option>
+                        <option value="humidity">Humidity</option>
+                        <option value="temperature">Temperature</option>
+                        <option value="airPollution">Air Pollution</option>
                       </select>
                     </div>
 
-                    <div className='d-flex flex-row pt-5'>
+                    <p className="h7 mt-4"><MDBIcon size="2x" far icon="calendar-alt" className="pr-3"/>Creation date of the measure</p>
+                    <MDBInput required type="date" value={this.state.creationDate} onChange={this.handleChangeCreationDate}/>
+
+                    <div className='d-flex flex-row pt-4'>
                       <MDBIcon size="2x" icon="user" className="pr-3"/>
-                      <select className="browser-default custom-select" value={this.state.userID} onChange={this.handleChangeUserID}>
-                        <option value="">To which user does it belong ?</option>
+                      <select className="browser-default custom-select" value={this.state.sensorID} onChange={this.handleChangeSensorID}>
+                        <option value="">To which sensor does it belong ?</option>
                         { options }
                       </select>
                     </div>
 
+                    <MDBInput className='mt-4' required label="What's the value ?" icon="sort-numeric-up-alt" group type="number" validate error="wrong" success="right" value={this.state.value} onChange={this.handleChangeValue}/>
+
                   </div>
-                  <div className="text-center py-4 mt-3">
+                  <div className="text-center py-1">
                     <MDBBtn className="btn btn-outline-purple" type="submit">
                       Enregistrer
                       <MDBIcon far icon="paper-plane" className="ml-2" />
@@ -149,4 +152,4 @@ class AddSensor extends React.Component {
   }
 };
 
-export default AddSensor;
+export default AddMeasure;
