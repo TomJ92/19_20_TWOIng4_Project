@@ -216,26 +216,26 @@ export default class areaChart extends PureComponent {
   render() {
     return (
       <div className="BarChartWidget">
-      <h6> Mesures par mois </h6>
+      <h6> Nombre de mesures par mois et par type </h6>
         <ResponsiveContainer width='100%' height={300}>
           <AreaChart data={[
   {
-    name: 'Janvier', Multimédia: this.state.humidity_january, Informatique: this.state.temperature_january, Téléphonie: this.state.pollution_january, amt: 2400,
+    name: 'Janvier', Humidité: this.state.humidity_january, Température: this.state.temperature_january, Pollution: this.state.pollution_january, amt: 2400,
   },
   {
-    name: 'Février', Multimédia: this.state.humidity_february, Informatique: this.state.temperature_february, Téléphonie: this.state.pollution_february, amt: 2210,
+    name: 'Février', Humidité: this.state.humidity_february, Température: this.state.temperature_february, Pollution: this.state.pollution_february, amt: 2210,
   },
   {
-    name: 'Mars', Multimédia: this.state.humidity_march, Informatique: this.state.temperature_march, Téléphonie: this.state.pollution_march, amt: 2290,
+    name: 'Mars', Humidité: this.state.humidity_march, Température: this.state.temperature_march, Pollution: this.state.pollution_march, amt: 2290,
   },
   {
-    name: 'Avril', Multimédia: this.state.humidity_april, Informatique: this.state.temperature_april, Téléphonie: this.state.pollution_april, amt: 2000,
+    name: 'Avril', Humidité: this.state.humidity_april, Température: this.state.temperature_april, Pollution: this.state.pollution_april, amt: 2000,
   },
   {
-    name: 'Mai', Multimédia: this.state.humidity_may, Informatique: this.state.temperature_may, Téléphonie: this.state.pollution_may, amt: 2181,
+    name: 'Mai', Humidité: this.state.humidity_may, Température: this.state.temperature_may, Pollution: this.state.pollution_may, amt: 2181,
   },
   {
-    name: 'Juin', Multimédia: this.state.humidity_june, Informatique: this.state.temperature_june, Téléphonie: this.state.pollution_june, amt: 2500,
+    name: 'Juin', Humidité: this.state.humidity_june, Température: this.state.temperature_june, Pollution: this.state.pollution_june, amt: 2500,
   },
 ]}
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }} label="Bonjour">
@@ -258,9 +258,9 @@ export default class areaChart extends PureComponent {
             <CartesianGrid strokeDasharray="3 3"/>
             <Tooltip />
             <Legend verticalAlign="bottom" align ="center" iconType ="rect" height={15}/>
-            <Area type="monotone" dataKey="Multimédia" stroke="#A7A7FF" fillOpacity={1} fill="url(#colorUv)" />
-            <Area type="monotone" dataKey="Informatique" stroke="#54D8FF" fillOpacity={1} fill="url(#colorPv)" />
-            <Area type="monotone" dataKey="Téléphonie" stroke="#FFBB28" fillOpacity={1} fill="url(#colorRv)" />
+            <Area type="monotone" dataKey="Humidité" stroke="#A7A7FF" fillOpacity={1} fill="url(#colorUv)" />
+            <Area type="monotone" dataKey="Température" stroke="#54D8FF" fillOpacity={1} fill="url(#colorPv)" />
+            <Area type="monotone" dataKey="Pollution" stroke="#FFBB28" fillOpacity={1} fill="url(#colorRv)" />
           </AreaChart>
         </ResponsiveContainer>
       </div>
