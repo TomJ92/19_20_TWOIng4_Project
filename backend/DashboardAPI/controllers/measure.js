@@ -323,17 +323,26 @@ exports.derniers = function(req, res)
 };
 exports.count_type = function(req,res)
 {
-	Measure.aggregate([
+	if(req.params.type)
 	{
-		$group: { _id: { type: '$type' }, vendors: { $addToSet: '$vendor'} }
-	},
+	Measure.find({type : req.params.type}).count()   
+	.then(function(measure_count)
 	{
-		$unwind:"$vendors"
-	},
+		res.send({measure_count});
+	})
+	.catch(function(error)
 	{
-		$group: { _id: "$_id", vendorCount: { $sum:1} }
+		res.send({
+			message: 'Error counting Measure'
+		});
+	});
 	}
-	]);
+	else
+	{
+		res.send({
+			message : 'type field is empty for count_type'
+		});
+	}	
 };
 // List of all Measure ID.
 exports.list_ID = function(req, res) {

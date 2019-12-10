@@ -2,81 +2,53 @@ import React from 'react';
 import { MDBTable, MDBTableBody, MDBTableHead, MDBIcon } from 'mdbreact';
 import { ResponsiveContainer } from 'recharts';
 
+
 const axios = require('axios');
-
-const data = {
-  columns: [
-    {
-      label: '#',
-      field: 'id',
-      sort: 'asc'
-    },
-    {
-      label: 'First',
-      field: 'first',
-      sort: 'asc'
-    },
-    {
-      label: 'Last',
-      field: 'last',
-      sort: 'asc'
-    },
-    {
-      label: 'Handle',
-      field: 'handle',
-      sort: 'asc'
-      }
-  ],
-  rows: [
-    {
-      'id': 1,
-      'first': 'Mark',
-      'last': 'Otto',
-      'handle': '@mdo'
-    },
-    {
-      'id': 2,
-      'first': 'Jacob',
-      'last': 'Thornton',
-      'handle': '@fat'
-    },
-    {
-      'id': 3,
-      'first': 'Larry',
-      'last': 'the Bird',
-      'handle': '@twitter'
-    },
-    {
-      'id': 4,
-      'first': 'Mark',
-      'last': 'Otto',
-      'handle': '@mdo'
-    },
-    {
-      'id': 5,
-      'first': 'Jacob',
-      'last': 'Thornton',
-      'handle': '@fat'
-    },
-    {
-      'id': 6,
-      'first': 'Larry',
-      'last': 'the Bird',
-      'handle': '@twitter'
-    }
-  ]
-};
-
 export default class TabWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+        columns: [
+    {
+      label: '#',
+      field: '_id',
+      sort: 'asc'
+    },
+    {
+      label: 'Type',
+      field: 'type',
+      sort: 'asc'
+    },
+    {
+      label: 'Date',
+      field: 'creationDate',
+      sort: 'asc'
+    },
+    {
+      label: 'Capteur',
+      field: 'sensorID',
+      sort: 'asc'
+      },
+      {
+      label: 'Valeur',
+      field: 'value',
+      sort: 'asc'
+      }
+  ],
+  rows : []
     };
   }
 
   componentWillMount() {
-
+    axios.get('http://localhost:3000/measures/lasts')
+    .then((response) => {
+      this.setState({rows: response.data});
+      console.log(response.data);
+    })
+    .catch(function(error)
+    {
+      console.log("ERROR");
+    });
   }
 
   render() {
@@ -91,11 +63,13 @@ export default class TabWidget extends React.Component {
           </div>
           <input className="form-control" type="text" placeholder="Search" aria-label="Search" />
         </div>
+                    <h6>Dernières mesures effectuées</h6>
+
 
         <ResponsiveContainer width='100%'>
-          <MDBTable scrollY hover>
-            <MDBTableHead columns={data.columns} />
-            <MDBTableBody rows={data.rows} />
+          <MDBTable scrollY hover >
+            <MDBTableHead columns={this.state.columns} />
+            <MDBTableBody rows={this.state.rows} />
           </MDBTable>
         </ResponsiveContainer>
       </div>
