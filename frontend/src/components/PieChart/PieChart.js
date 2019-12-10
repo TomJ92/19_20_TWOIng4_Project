@@ -23,13 +23,39 @@ export default class Example extends PureComponent {
   }
 
   componentWillMount() {
-
+    axios.get('http://localhost:3000/measures/count_type')
+    .then((response) => {
+      this.setState({rows: response.data});
+      console.log(response.data);
+    })
+    .catch(function(error)
+    {
+      console.log("ERROR");
+    });
+    axios.get('http://localhost:3000/measures/lasts')
+    .then((response) => {
+      this.setState({rows: response.data});
+      console.log(response.data);
+    })
+    .catch(function(error)
+    {
+      console.log("ERROR");
+    });
+    axios.get('http://localhost:3000/measures/lasts')
+    .then((response) => {
+      this.setState({rows: response.data});
+      console.log(response.data);
+    })
+    .catch(function(error)
+    {
+      console.log("ERROR");
+    });
   }
 
   render() {
     return (
       <div>
-        <h6>Ventes multimédia</h6>
+        <h6>Mesures gloabales</h6>
 
         <ResponsiveContainer width='100%' height={200}>
           <PieChart onMouseEnter={this.onPieEnter}>
