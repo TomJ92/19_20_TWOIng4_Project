@@ -19,3 +19,19 @@ router.get('/lasts', Sensor.derniers);
 router.get('/list_id', Sensor.list_ID);
 
 module.exports = router;
+
+// GET Number of instances per type
+
+router.get('/count_kitchen', Sensor.count_kitchen);
+// GET Number of instances per type
+
+router.get('/count_livingroom', Sensor.count_livingroom);
+// GET Number of instances per type
+
+router.get('/count_bedroom', Sensor.count_bedroom);
+// GET Number of instances per type
+
+router.get('/count_bathroom', Sensor.count_bathroom);
+// GET Number of instances per type
+
+router.get('/count_entrance', Sensor.count_entrance);

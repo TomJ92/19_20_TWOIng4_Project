@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 //Variable sensor du model
 var Sensor = require('../models/sensor');
-var Measure = require('../models/measure');
 var mongoose = require('mongoose');
 var ObjectID = mongoose.Types.ObjectId;
 
@@ -236,7 +235,7 @@ exports.delete = function(req,res)
 	{
 		if(sensor)
 		{
-			Measure.find({
+			Sensor.find({
 				sensorID : new ObjectID(req.body.sensorId)
 			}).remove().exec()
 			.then(function(measures_removed)
@@ -351,4 +350,75 @@ exports.list_ID = function(req, res) {
     		message : 'Erreur de liste'
     	});
     });
+};
+//
+exports.count_kitchen = function(req,res)
+{
+	Sensor.find({location : "kitchen"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Sensor'
+		});
+	});
+};
+exports.count_livingroom = function(req,res)
+{
+	Sensor.find({location : "livingroom"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Sensor'
+		});
+	});
+};
+exports.count_bedroom = function(req,res)
+{
+	Sensor.find({location : "bedroom"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Sensor'
+		});
+	});
+};
+exports.count_bathroom = function(req,res)
+{
+	Sensor.find({location : "bathroom"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Sensor'
+		});
+	});
+};
+exports.count_entrance = function(req,res)
+{
+	Sensor.find({location : "entrance"}).countDocuments()   
+	.then(function(measure_count)
+	{
+		res.send({measure_count});
+	})
+	.catch(function(error)
+	{
+		res.send({
+			message: 'Error counting Sensor'
+		});
+	});
 };
