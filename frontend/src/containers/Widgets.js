@@ -1,10 +1,11 @@
 import React from 'react';
 import PieChart from '../components/PieChart/PieChart.js';
 import AreaChart from '../components/AreaChart/AreaChart.js';
-import RadialChart from '../components/RadialChart/RadialChart.js';
+// import RadialChart from '../components/RadialChart/RadialChart.js';
 import RadChart from '../components/RadarChart/RadarChart.js';
 import BarChart from '../components/BarChart/BarChart.js';
 import TabWidget from '../components/TabWidget/TabWidget.js';
+import TotalChart from '../components/TotalChart/TotalChart.js';
 import { MDBCard, MDBCardBody, MDBCol, MDBRow } from 'mdbreact';
 
 export default class Widgets extends React.Component {
@@ -37,7 +38,7 @@ export default class Widgets extends React.Component {
         </MDBRow>
 
         <MDBRow>
-          <MDBCol xs="12" md="6" xl="5">
+          <MDBCol xs="12" md="6" xl="4">
             <MDBCard className="text-center shadow-box hoverable mt-1">
               <MDBCardBody>
                 <PieChart/>
@@ -53,10 +54,11 @@ export default class Widgets extends React.Component {
             </MDBCard>
           </MDBCol>
 
-          <MDBCol xl='3'>
+          <MDBCol xl='4'>
             <MDBCard className="text-center shadow-box hoverable mt-1">
               <MDBCardBody>
-                <RadialChart/>
+                <TotalChart/>
+                {/* <RadialChart/> */}
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
