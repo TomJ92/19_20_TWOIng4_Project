@@ -16,7 +16,13 @@ router.get('/lasts', Measure.derniers);
 
 // GET Number of instances per type
 
-router.get('/count_type', Measure.count_type);
+router.get('/count_humidity', Measure.count_humidity);
+// GET Number of instances per type
+
+router.get('/count_temperature', Measure.count_temperature);
+// GET Number of instances per type
+
+router.get('/count_pollution', Measure.count_pollution);
 
 // GET List of ID
 
